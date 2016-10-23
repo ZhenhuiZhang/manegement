@@ -18,11 +18,14 @@ mongoose.connect(config.db, {
 // models
 require('./admin')
 
-mongoose.model('Admin').create({adminname: "jack",
-  pass: md5(md5("123123"))},function(err,rd){
-console.log(err)
-console.log(rd)
-  })
+mongoose.model('Admin').findOneAndUpdate({
+      adminname: "jack",
+      pass: md5(md5("123123")),
+      group : "super"
+    },function(err,rd){
+      console.log(err)
+      console.log(rd)
+})
 
 
 exports.Admin = mongoose.model('Admin')
