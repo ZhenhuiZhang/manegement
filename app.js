@@ -52,10 +52,6 @@ for (var i in routes) {
     routes[i](app);
 }
 
-var schedule = tools.requires(path.join(__dirname, 'app/schedule'));
-for (var i in schedule) {
-    schedule[i]();
-}
 
 var api = new API();
 api.scan(path.join(__dirname, './app/apis'));

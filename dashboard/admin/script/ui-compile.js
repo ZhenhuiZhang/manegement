@@ -24,7 +24,7 @@ var uiCompile = function () {
 }()
 jQuery(document).ready(function() {
     uiCompile.init()
-    PermissionHandler()
+    // PermissionHandler()
     //保存顶部搜索状态
     if(localStorage["cms_top_search_type"])$('#cmsSearchUser').val(localStorage["cms_top_search_type"])
     jQuery("#cmsFilterSearchUser").keypress(function(e){cmsFilterSearchUserHandler(e)});

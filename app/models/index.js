@@ -1,9 +1,10 @@
 var mongoose = require('mongoose');
 var config   = require('../../config');
 var logger = require('../common/logger').logger('models');
+var md5 = require('md5')
 
-logger.info('connect db_cms db', config.db_cms);
-mongoose.connect(config.db_cms, {
+logger.info('connect db_cms db', config.db);
+mongoose.connect(config.db, {
   server: {poolSize: 20}
 }, function (err) {
   if (err) {
@@ -16,13 +17,12 @@ mongoose.connect(config.db_cms, {
 
 // models
 require('./admin')
-require('./operate_log')
-require('./permission_modules')
-require('./permission_role')
-require('./push')
+
+mongoose.model('Admin').create({adminname: "jack",
+  pass: md5(md5("123123"))},function(err,rd){
+console.log(err)
+console.log(rd)
+  })
+
 
 exports.Admin = mongoose.model('Admin')
-exports.OperateLog = mongoose.model('operate_log')
-exports.PermissionModules = mongoose.model('permission_modules')
-exports.PermissionRole = mongoose.model('permission_role')
-exports.Push = mongoose.model('Push')

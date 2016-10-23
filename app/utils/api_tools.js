@@ -1,8 +1,7 @@
 'use strict';
 var __ = require('lodash')
 var CMS_Models  = require('../models');
-var Main_Models = require('../models/index_main')
-var Models = __.extend(CMS_Models,Main_Models)
+var Models = CMS_Models
 
 /**
  * 清理 和 赋值 API描述中的输入参数的格式

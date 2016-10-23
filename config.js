@@ -82,18 +82,9 @@ var config = {
     session_secret: 'nonolive_secret',
     api_sign_enable : false,  //CMS自有的API，是否启用签名
     
-    db: 'mongodb://127.0.0.1:27018/FEWeb',                          //业务主库
-    db_readonly: 'mongodb://127.0.0.1:27017/FEWeb1',                //主库复本只读数据库
-    db_report: 'mongodb://127.0.0.1:27018/CMS_Report',              //报表数据库
-    db_cms: 'mongodb://127.0.0.1:27018/CMS',                        //CMS数据库
+    db: 'mongodb://127.0.0.1:27017/BOOKWeb',                          //业务主库
     
     api_server:'http://127.0.0.1:5401/',
-    api_secret_key:'Hf7weZuREJQ!#DJDI&m8x&1QF!nciLhV',
-    anchor_middle_object_cron : '0 0 0 * * *',
-    punish_unlock : '1 */5 * * * *',
-    push_server : 'http://172.31.7.51',
-    push_server_port : 3600,
-    push_server_api : '/ps/trigger_push',
     default_timezone : 'Asia/Jakarta',
 
     // redis 配置，默认是本地
@@ -124,68 +115,5 @@ var config = {
         }
     },
 }
-if (process.env.NODE_ENV === 'dev') {
-    config.api_server='http://127.0.0.1:5401'     
-    config.db = 'mongodb://192.168.0.20:27018/FEWeb'
-    config.db_readonly= 'mongodb://192.168.0.20:27018/FEWeb'
-    config.db_report= 'mongodb://192.168.0.20:27018/CMS_Report'
-    config.db_cms = 'mongodb://192.168.0.20:27018/CMS'
-    config.redis_host = '192.168.0.20'
-    
-    // config.api_server='http://192.168.0.20:5401'
-    // config.db = 'mongodb://127.0.0.1:27017/FEWeb1'
-    // config.db_readonly= 'mongodb://127.0.0.1:27017/FEWeb1'
-    // config.db_report= 'mongodb://127.0.0.1:27017/CMS_Report'
-    // config.db_cms = 'mongodb://127.0.0.1:27017/FEWeb1'
 
-    config.punish_unlock = '1 */0 * * * *'
-    config.anchor_middle_object_cron = '1 */0 * * * *'
-    // config.anchor_middle_object_cron = '0 1 0 * * *'
-}
-
-if (process.env.NODE_ENV === 'testUnit') {
-    config.api_server='http://127.0.0.1:5401' 
-    
-    config.db = 'mongodb://192.168.0.20:27018/FEWeb'
-    config.db_readonly= 'mongodb://192.168.0.20:27018/FEWeb'
-    config.db_report= 'mongodb://192.168.0.20:27018/CMS_Report'
-    config.db_cms = 'mongodb://192.168.0.20:27018/CMS'
-    config.redis_host = '192.168.0.20'
-
-    // config.anchor_middle_object_cron = '0 1 0 * * *'
-    config.anchor_middle_object_cron = '1 */0 * * * *'
-    config.punish_unlock = '1 */0 * * * *'
-
-    config.redis_host = '192.168.0.20'
-}
-if (process.env.NODE_ENV === 'jinrong') {
-    config.debug = true
-    config.api_server = 'http://127.0.0.1:5401'
-    config.db = 'mongodb://127.0.0.1:27018/FEWeb?readPreference=nearest'
-    config.db_readonly = 'mongodb://127.0.0.1:27018/FEWeb?readPreference=secondaryPreferred'
-    config.db_report = 'mongodb://127.0.0.1:27018/CMS_Report'
-    config.db_cms = 'mongodb://127.0.0.1:27018/CMS'
-    config.redis_host = '127.0.0.1'
-
-    config.anchor_middle_object_cron = '1 */5 * * * *'
-    config.punish_unlock = '1 */5 * * * *'
-}
-if (process.env.NODE_ENV === 'test') {
-    config.debug = false
-    config.api_server = 'http://127.0.0.1:5401'
-    config.db = 'mongodb://127.0.0.1:27018/FEWeb?readPreference=nearest'
-    config.db_readonly = 'mongodb://127.0.0.1:27018/FEWeb?readPreference=secondaryPreferred'
-    config.db_report = 'mongodb://127.0.0.1:27018/CMS_Report'
-    config.db_cms = 'mongodb://127.0.0.1:27018/CMS'
-    config.redis_host = '127.0.0.1'
-
-    config.anchor_middle_object_cron = '1 */5 * * * *'
-    config.punish_unlock = '1 */5 * * * *'
-}
-if (process.env.NODE_ENV === 'production') {
-    console.log('production Init configs', Object.getOwnPropertyNames(release_config).length, 'items.')
-    Object.getOwnPropertyNames(release_config).forEach(conf=>{
-        config[conf] = release_config[conf]
-    })
-}
 module.exports = config;
