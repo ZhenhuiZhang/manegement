@@ -1,0 +1,48 @@
+<!--#include file="../_header.html"-->
+<link rel="stylesheet" type="text/css" href="../../../template_content/assets/bootstrap-datetimepicker/css/datetimepicker.css" />
+<title>SMS Logs</title>
+<meta name="permission" content="{'name':'sms_logs','intro':'SMS Logs Manager Module'}" />
+<meta name="permission" content="{'parentname':'sms_logs','name':'sms_logs_list','intro':'SMS logs Manager List'}" 
+    data-roles="{'parentname':'sms_logs_list','name':'sms_logs_list_grid','intro':'SMS logs list Grid','element':'grid','CRUD':'R','api':'/sms/find'}"
+    />
+<!--#include file="../_header_end.html"-->
+<section id="innerSection" ng-controller="SMS-logs-list">
+    <div class="row">
+        <div class="col-lg-12">
+            <!--breadcrumbs start -->
+            <ul class="breadcrumb">
+                <li><a href="#"><i class="icon-home"></i> Home</a></li>
+                <li class="active">SMS Logs</li>
+            </ul>
+            <!--breadcrumbs end -->
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <table class="angular-grid" id="SMS_logs_grid"
+                ng-grid-kendoui="'url':'{{gridUrl}}','limit':'15','width':'98%'">
+                <thead><tr><td>
+                    <input name="to" ng-model="to" type='text'  class="tooltips span2" placeholder="Phone Number" title="Phone Number"/>
+                    <label>From</label><input name="date_start" data-type="date" ng-model="date_start" type="text" class="tooltips span2 dpd1"/>
+                    <label>To</label><input name="date_end" data-type="date" ng-model="date_end" type="text" class="tooltips span2 dpd2"/>
+                    <button class="toolbar-search btn  J_bt_search" ng-click="search()"><i class="icon-search"></i> Search</button>
+                    <button class="toolbar-search btn tooltips" ng-click="clearSearch()" title="Clean Search"><i class="icon-check-empty"></i> Clean</button>
+                </td></tr></thead>
+                <tbody>
+                <tr>
+                    <th data-fieldName="create_at" data-fieldType="date" data-format="{0:yyyy-MM-dd HH:mm:ss}" data-width="15%">Send Time</th>
+                    <th data-fieldName="to" data-fieldType="string" data-width="15%">Phone Number</th>
+                    <th data-fieldName="status" data-fieldType="string" data-width="15%">Status</th>
+                    <th data-fieldName="type" data-fieldType="string" data-width="15%">Type</th>
+                    <th data-fieldName="response" data-fieldType="string" data-width="40%">Response</th>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+<!--#include file="../_footer.html"-->
+<script type="text/javascript" src="../../../template_content/assets/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+<script src="controller/SMSlogs_list.js"></script>
+<!--#include file="../_footer_end.html"-->

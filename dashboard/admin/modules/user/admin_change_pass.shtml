@@ -1,0 +1,68 @@
+<!--#include file="../_header.html"-->
+
+<!--#include file="../_header_end.html"-->
+<section id="innerSection" ng-controller="admin-change-pass">
+    <div class="row">
+        <div class="col-lg-12">
+            <!--breadcrumbs start -->
+            <ul class="breadcrumb">
+                <li><a href="#"><i class="icon-home"></i> Home</a></li>
+                <li><a href="#">Users Manager</a></li>
+                <li><a href="admin.html">Admin</a></li>
+                <li class="active">change password</li>
+            </ul>
+            <!--breadcrumbs end -->
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+
+            <section class="panel">
+                <header class="panel-heading">
+                    Change Password
+                </header>
+                <div class="panel-body">
+                    <form class="form-horizontal tasi-form" method="post" name="submit_form" ng-submit="submit_form.$valid && submit_form.submit()">
+                        <div class="form-group {{submit_form.pass.$error.required ? 'has-error':''}}">
+                            <label class="col-sm-2 col-sm-2 control-label">Old Password</label>
+                            <div class="col-sm-10">
+                                <input name="old_pass" class="form-control input-lg" type="password">
+                            </div>
+                        </div>
+
+                        <div class="form-group {{submit_form.pass.$error.required ? 'has-error':''}}">
+                            <label class="col-sm-2 col-sm-2 control-label">New Password</label>
+                            <div class="col-sm-10">
+                                <input name="new_pass" class="form-control input-lg" type="password">
+                            </div>
+                        </div>
+
+                        <div class="form-group {{submit_form.pass.$error.required ? 'has-error':''}}">
+                            <label class="col-sm-2 col-sm-2 control-label">Confirm Password</label>
+                            <div class="col-sm-10">
+                                <input name="confirm_pass" class="form-control input-lg" type="password">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="col-sm-12">
+                                <input type="hidden" name="_id" value="{{model._id}}"/>
+                                <button ng-disabled="!submit_form.$valid" ng-click="save()" type="submit" class="btn btn-primary btn-lg"
+                                    data-roles="{'parentname':'admin_detail','name':'admin-detail-submit','intro':'Admin detail update/add','element':'button','CRUD':'CU','api':['/admin/update','/admin/create']}"
+                                >Submit</button>
+                            </label>
+                        </div>
+
+                    </form>
+                </div>
+            </section>
+
+
+
+        </div>
+    </div>
+</section>
+<!--#include file="../_footer.html"-->
+<script src="controller/admin_change_pass.js"></script>
+<!--#include file="../_footer_end.html"-->

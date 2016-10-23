@@ -1,0 +1,50 @@
+<!--#include file="../_header.html"-->
+<title>Reports</title>
+<meta name="permission" content="{'name':'report','intro':'Report Manager Module'}" />
+<meta name="permission" content="{'parentname':'report','name':'report_list','intro':'report List'}" 
+    data-roles="{'parentname':'report_list','name':'report_list_grid','intro':'report List Grid','element':'grid','CRUD':'R','api':'/report/find'}"
+    />
+<link rel="stylesheet" type="text/css" href="../../../template_content/assets/bootstrap-datetimepicker/css/datetimepicker.css" />>
+<!--#include file="../_header_end.html"-->
+<section id="innerSection" ng-controller="report-list">
+    <div class="row">
+        <div class="col-lg-12">
+            <!--breadcrumbs start -->
+            <ul class="breadcrumb">
+                <li><a href="#"><i class="icon-home"></i> Home</a></li>
+                <li><a href="#">About Feedback</a></li>
+                <li class="active">Report</li>
+            </ul>
+            <!--breadcrumbs end -->
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <table class="angular-grid" id="report_grid"
+                ng-grid-kendoui="'url':'{{gridUrl}}','limit':'15','width':'98%','selectable':'multiple, row'">
+                <thead><tr><td>
+                    <input name="user_id" ng-model="user_id"  type='text' ng-keydown="search2($event)" class="tooltips span2" placeholder="User Id" title="User Id"/>
+                    <input name="report_user_id"  ng-model="report_user_id" type='text' ng-keydown="search2($event)" class="tooltips span2" placeholder="Report User Id" title="Report User Id"/>
+                    <label>From</label><input name="date_start" data-type="date" ng-model="date_start" type="text" class="tooltips span2 dpd1"/>
+                    <label>To</label><input name="date_end" data-type="date" ng-model="date_end" type="text" class="tooltips span2 dpd2"/>
+                    
+                    <button class="toolbar-search btn  J_bt_search" ng-click="search()"><i class="icon-search"></i> Search</button>
+                    <button class="toolbar-search btn tooltips" ng-click="clearSearch()" title="Clear Search"><i class="icon-check-empty"></i> Clear</button>
+                </td></tr></thead>
+                <tbody>
+                <tr>
+                    <th data-fieldName="user_id" data-fieldType="string">UserID</th>
+                    <th data-fieldName="report_user_id" data-fieldType="string">Report UserID</th>
+                    <th data-fieldName="liveurl" data-fieldType="string">Live Url</th>
+                    <th data-fieldName="create_at" data-fieldType="date" data-format="{0:yyyy-MM-dd HH:mm:ss}" data-width="15%">Create At</th>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+<!--#include file="../_footer.html"-->
+<script src="controller/report_list.js"></script>
+<script type="text/javascript" src="../../../template_content/assets/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+<!--#include file="../_footer_end.html"-->

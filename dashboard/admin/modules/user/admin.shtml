@@ -1,0 +1,51 @@
+<!--#include file="../_header.html"-->
+<title>用户管理</title>
+<meta name="permission" content="{'name':'admin','intro':'Admin Manager Module'}" />
+<meta name="permission" content="{'parentname':'admin','name':'admin_list','intro':'Admin Manager List'}" 
+    data-roles="{'parentname':'admin_list','name':'admin_list_grid','intro':'Admin Manager Grid','element':'grid','CRUD':'R','api':'/admin/find'}"
+    />
+<!--#include file="../_header_end.html"-->
+<section id="innerSection" ng-controller="admin-list">
+    <div class="row">
+        <div class="col-lg-12">
+            <ul class="breadcrumb">
+                <li><a href="#"><i class="icon-home"></i> Home</a></li>
+                <li><a href="#">Users Manager</a></li>
+                <li class="active">Admin</li>
+                <a href="admin_detail.html" class="btn btn-primary icon-plus">Add</a>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <table class="angular-grid" id="admin_grid"
+                ng-grid-kendoui="'url':'{{gridUrl}}','limit':'200','width':'98%','selectable':'multiple, row'">
+                <thead><tr><td>
+                    <input name="name" ng-model="name"  type='text' ng-keydown="search2($event)" class="tooltips span2" placeholder="Admin Name" title="Admin Name"/>
+                    <button class="toolbar-search btn  J_bt_search" ng-click="search()"><i class="icon-search"></i> Search</button>
+                    <button class="toolbar-search btn tooltips" ng-click="clearSearch()" title="清除记录的搜索条件"><i class="icon-check-empty"></i>Clean</button>
+                    <!--<a href="/statis/calcAuthorStatis">Download Ten Days Data For Host(Pleas Wait When you click!!!!)</a>-->
+                </td></tr></thead>
+                <tbody>
+                <tr>
+                    <th data-fieldName="create_at" data-fieldType="date" data-format="{0:yyyy-MM-dd HH:mm:ss}" data-width="15%">Registration time</th>
+                    <th data-fieldName="adminname" data-fieldType="string">Admin Name</th>
+                    <th data-fieldName="group" data-fieldType="string">Group</th>
+                    <th data-fieldName="role" data-fieldType="string">Role</th>
+                    <th data-fieldName="handlebar" data-fieldType="string" data-width="10%">Operate</th>            
+                </tr>
+                </tbody>
+                <tfoot><tr><td>
+                    <select ng-model="action" ng-change="actionChange()">
+                        <option value="">----批量操作----</option>
+                        <option value="del">删除</option>
+                    </select>
+                </td></tr></tfoot>
+            </table>
+        </div>
+    </div>
+</section>
+<!--#include file="../_footer.html"-->
+<script src="controller/admin.js"></script>
+<!--#include file="../_footer_end.html"-->

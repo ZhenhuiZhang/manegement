@@ -1,0 +1,37 @@
+<!--#include file="../_header.html"-->
+<title>Banner Managers</title>
+<meta name="permission" content="{'name':'notifacation','intro':'Notifacation Manager Module'}" />
+<meta name="permission" content="{'parentname':'notifacation','name':'recommend_list','intro':'Notification List'}" 
+    data-roles="{'parentname':'notification_list','name':'notification_list_grid','intro':'Notification List Grid','element':'grid','CRUD':'R','api':'/notification/find'}"
+    />
+<!--#include file="../_header_end.html"-->
+<section id="innerSection" ng-controller="sensitive-word-list">
+    <div class="row">
+        <div class="col-lg-12">
+            <!--breadcrumbs start -->
+            <ul class="breadcrumb">
+                 <li><a href="#"><i class="icon-home"></i> Home</a></li>
+                <li class="active">Sensitive Word</li>
+                <a href="sensitive_word_detail.html" class="btn btn-primary icon-plus">Add</a>
+            </ul>
+            <!--breadcrumbs end -->
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <table class="angular-grid" id="sensitive_list_grid"
+                ng-grid-kendoui="'url':'{{gridUrl}}','limit':'15','width':'98%','selectable':'multiple, row'">
+                <tbody>
+                <tr>
+                    <th data-fieldName="sensitiveWord" data-fieldType="string">Sensitive Word</th>
+                    <th data-fieldName="handlebar" data-fieldType="string" data-width="20%">Operation</th>            
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+<!--#include file="../_footer.html"-->
+<script src="controller/sensitive_word.js"></script>
+<!--#include file="../_footer_end.html"-->

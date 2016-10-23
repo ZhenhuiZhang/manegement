@@ -1,0 +1,45 @@
+<!--#include file="../_header.html"-->
+<title>Operate log</title>
+<meta name="permission" content="{'name':'operate_log','intro':'Operate Log Manager Module'}" />
+<meta name="permission" content="{'parentname':'operate_log','name':'operate_log_list','intro':'Operate Log Manager List'}" 
+    data-roles="{'parentname':'operate_log_list','name':'operate_log_list_grid','intro':'Operate log list Grid','element':'grid','CRUD':'R','api':'/operateLog/find'}"
+    />
+<!--#include file="../_header_end.html"-->
+<section id="innerSection" ng-controller="operate_log_list">
+    <div class="row">
+        <div class="col-lg-12">
+            <!--breadcrumbs start -->
+            <ul class="breadcrumb">
+                <li><a href="#"><i class="icon-home"></i> Home</a></li>
+                <li><a href="#">System</a></li>
+                <li class="active">Operate log</li>
+            </ul>
+            <!--breadcrumbs end -->
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <table class="angular-grid" id="operate_log_grid"
+                ng-grid-kendoui="'url':'{{gridUrl}}','limit':'15','width':'98%','selectable':'multiple, row'">
+                <thead><tr><td>
+                    <input name="q" ng-model="q" type='text' ng-keydown="search2($event)" class="tooltips span2" placeholder="user or operation" title="user or operation"/>
+                    <button class="toolbar-search btn  J_bt_search" ng-click="search()"><i class="icon-search"></i> Search</button>
+                    <button class="toolbar-search btn tooltips" ng-click="clearSearch()" title="清除记录的搜索条件"><i class="icon-check-empty"></i>Clean</button>
+                </td></tr></thead>
+                <tbody>
+                <tr>
+                    <th data-fieldName="create_at" data-fieldType="date" data-format="{0:yyyy-MM-dd HH:mm:ss}">Send time</th>
+                    <th data-fieldName="user" data-fieldType="string">user</th>
+                    <th data-fieldName="operation" data-fieldType="string">operation</th>
+                    <th data-fieldName="submit_content" data-fieldType="string" data-width="35%">submit_content</th>
+                    <th data-fieldName="origin_content" data-fieldType="string" data-width="35%">origin_content</th>
+                </tr>
+                </tbody>  
+            </table>
+        </div>
+    </div>
+</section>
+<!--#include file="../_footer.html"-->
+<script src="controller/operate_log.js"></script>
+<!--#include file="../_footer_end.html"-->

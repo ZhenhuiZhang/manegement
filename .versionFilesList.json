@@ -1,0 +1,9 @@
+{
+  "name": "sxcms",
+  "currentVersion": "1.0.7",
+  "versionPrefix": "v",
+  "filesList": [
+    "package.json",
+    "README.md"
+  ]
+}

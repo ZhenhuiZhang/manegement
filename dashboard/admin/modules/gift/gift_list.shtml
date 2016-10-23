@@ -1,0 +1,49 @@
+<!--#include file="../_header.html"-->
+    <title>Gift List</title>
+    <meta name="permission" content="{'name':'gift','intro':'gift Manager Module'}" />
+    <meta name="permission" content="{'parentname':'gift','name':'gift_list','intro':'gift Manager List'}" 
+        data-roles="{'parentname':'gift_list','name':'gift_list_grid','intro':'gift list Grid','element':'grid','CRUD':'R','api':'/gift/find'}"
+        />
+<!--#include file="../_header_end.html"-->
+<section id="innerSection" ng-controller="gift-list">
+    <div class="row">
+        <div class="col-lg-12">
+            <!--breadcrumbs start -->
+            <ul class="breadcrumb">
+                <li><a href="#"><i class="icon-home"></i> Home</a></li>
+                <li class="active">Gift List</li>
+                <a href="gift_detail.html" class="btn btn-primary icon-plus">Add</a>
+            </ul>
+            <!--breadcrumbs end -->
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <table class="angular-grid" id="gift_list_grid"
+                ng-grid-kendoui="'url':'{{gridUrl}}','limit':'15','width':'98%','selectable':'multiple, row'">
+                <thead><tr><td>
+                    <input name="gift_id" ng-model="gift_id" type='text'  class="tooltips span2" placeholder="gift_id" title="gift_id"/>
+                    <button class="toolbar-search btn  J_bt_search" ng-click="search()"><i class="icon-search"></i> Search</button>
+                    <button class="toolbar-search btn tooltips" ng-click="clearSearch()" title="Clean Search"><i class="icon-check-empty"></i> Clean</button>
+                </td></tr></thead>
+                <tbody>
+                <tr>
+                    <!--<th data-fieldName="location" data-fieldType="string" data-width="8%">Country</th>                   -->
+                    <th data-fieldName="name" data-fieldType="string" data-width="8%">Gift Name</th>
+                    <th data-fieldName="pic" data-fieldType="string" data-width="8%">pic</th>
+                    <th data-fieldName="gift_id" data-fieldType="string" data-width="10%">gift_id</th>
+                    <th data-fieldName="price" data-fieldType="string" data-width="5%">price</th>
+                    <th data-fieldName="category" data-fieldType="string" data-width="5%">category</th>
+                    <th data-fieldName="status" data-fieldType="string" data-width="5%">status</th>
+                    <th data-fieldName="sort" data-fieldType="string" data-width="5%">sort</th>
+                    <th data-fieldName="edit" data-fieldType="string" data-width="6%">Operation</th>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+<!--#include file="../_footer.html"-->
+<script src="controller/gift_list.js"></script>
+<!--#include file="../_footer_end.html"-->

@@ -1,0 +1,111 @@
+
+<aside>
+    <div id="sidebar" class="nav-collapse" style="z-index: 3;">
+        <!-- sidebar menu start-->
+        <ul class="sidebar-menu" id="nav-accordion">
+                  <li>
+                      <a href="#">
+                          <i class="icon-dashboard"></i>
+                          <span>Dashboard</span>
+                      </a>
+                  </li>
+                  <li class="sub-menu">
+                      <a href="javascript:;" class="active">
+                          <i class="icon-thumbs-up-alt"></i>
+                          <span>Recommend</span>
+                      </a>
+                      <ul class="sub">
+                          <!--<li><a href="../banner/banner.html">Banner Recommend</a></li>-->
+                          <li><a href="../banner/anchor_recommend.html">Host Recommend</a></li>
+                          <li><a href="../banner/top.html">Top Banner</a></li>
+                          <li><a href="../splash/splash_list.html">Splash</a></li>
+                      </ul>
+                  </li>
+                  <li class="sub-menu">
+                      <a href="javascript:;" class="active">
+                          <i class="icon-group"></i>
+                          <span>Users Manager</span>
+                      </a>
+                      <ul class="sub">
+                          <li><a href="../user/user_list.html">Users</a></li>
+                          <li><a href="../user/anchor_list.html">Hosts</a></li>
+                          <li><a href="../user/guest_list.html">Guest</a></li>
+                      </ul>
+                  </li>
+                  <li class="sub-menu">
+                      <a href="javascript:;" class="active">
+                          <i class="icon-film"></i>
+                          <span>Live Logs</span>
+                      </a>
+                      <ul class="sub">
+                          <li><a href="../live_logs/live_logs_list.html">Live Logs</a></li>
+                          <li><a href="../push_logs/push_logs_list.html">Push Logs</a></li>
+                          <li><a href="../user/user_status_logs.html">User Punish Log</a></li>
+                      </ul>
+                  </li>
+                  <li class="sub-menu">
+                      <a href="javascript:;" class="active">
+                          <i class="icon-usd"></i>
+                          <span>Finance</span>
+                      </a>
+                      <ul class="sub">
+                          <li><a href="../finance/gift_items.html">Gift items</a></li>
+                          <li><a href="../finance/pay_items.html">Pay items</a></li>            
+                          <li><a href="../finance/account_list.html">Accounts</a></li>
+                          <li ng-if="GROUP=='super'"><a href="../finance/deposit_list.html">Deposit</a></li>
+                      </ul>
+                  </li>
+                  <li class="sub-menu">
+                      <a href="javascript:;" class="">
+                          <i class="icon-comment"></i>
+                          <span>About Feedback</span>
+                      </a>
+                      <ul class="sub">
+                          <li><a href="../feedback/feedback_list.html">Feedback</a></li>
+                          <li><a href="../feedback/report_list.html">Report</a></li>
+                      </ul>
+                  </li>
+                  <li class="sub-menu" ng-if="GROUP=='super'">
+                      <a href="javascript:;" class="">
+                          <i class="icon-unlock-alt"></i>
+                          <span>Permission</span>
+                      </a>
+                      <ul class="sub">
+                          <li ng-if="GROUP=='super'"><a href="../user/admin.html">Admins</a></li>                          
+                          <li><a href="../permission/module.html">Modules</a></li>
+                          <li><a href="../permission/role.html">Roles</a></li>
+                      </ul>
+                  </li>
+                  <li class="sub-menu">
+                      <a href="javascript:;" class="">
+                          <i class="icon-cogs"></i>
+                          <span>System</span>
+                      </a>
+                      <ul class="sub">
+                        <li><a href="../config/config_version_list.html">Config</a></li>
+                        <li><a href="../gift/gift_list.html">Gift List</a></li>
+                        <li><a href="../medal/medal_list.html">Medal List</a></li>
+                        <li><a href="../system/appversion.html">App Version</a></li>
+                        <li><a href="../rank/weekly_gift_list.html">Weekly Gift List</a></li>
+                        <li><a href="../sensitiveWord/sensitive_word.html">Sensitive Word</a></li>
+                        <li><a href="../SMSlogs/SMSlogs_list.html">SMS Logs</a></li>
+                        <li><a href="../push/push_list.html">Push New</a></li>
+                        <li ng-if="GROUP=='super'"><a href="../system/operate_log.html">Operate log</a></li>
+                      </ul>
+                  </li>
+                  <li class="sub-menu" ng-if="USERNAME=='owen.lin'">
+                      <a href="javascript:;" class="">
+                          <i class="icon-dashboard"></i>
+                          <span>Developer</span>
+                      </a>
+                      <ul class="sub">
+                          <li><a href="../welcome/welcome.html">Welcome</a></li>
+                          <li><a href="../welcome/openModal.html">Open Modal DEMO</a></li>
+                          <li><a href="../welcome/griddemo.html">Grid Demo</a></li>
+                          <li><a href="../../../template_content/">Show DEMO</a></li>
+                      </ul>
+                  </li>
+              </ul>
+              <!-- sidebar menu end-->
+          </div>
+      </aside>

@@ -1,0 +1,74 @@
+<!--#include file="../_header.html"-->
+<link rel="stylesheet" type="text/css" href="../../../template_content/assets/bootstrap-datetimepicker/css/datetimepicker.css" />
+<title>Live Logs</title>
+<meta name="permission" content="{'name':'push_logs','intro':'Push Logs Manager Module'}" />
+<meta name="permission" content="{'parentname':'push_logs','name':'push_logs_list','intro':'push logs Manager List'}" 
+    data-roles="{'parentname':'push_logs_list','name':'push_logs_list_grid','intro':'push logs list Grid','element':'grid','CRUD':'R','api':'/liveLogs/find'}"
+    />
+<!--#include file="../_header_end.html"-->
+<section id="innerSection" ng-controller="push-logs-list">
+    <div class="row">
+        <div class="col-lg-12">
+            <!--breadcrumbs start -->
+            <ul class="breadcrumb">
+                <li><a href="#"><i class="icon-home"></i> Home</a></li>
+                <li class="active">Push Logs</li>
+                <a href="clear_fcm.html" class="btn btn-primary">Clear FCM</a>
+            </ul>
+            <!--breadcrumbs end -->
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <table class="angular-grid" id="push_logs_grid"
+                ng-grid-kendoui="'url':'{{gridUrl}}','limit':'15','width':'98%'">
+                <thead><tr><td>
+                    <input name="user_id"  type='text' ng-model="user_id" class="tooltips span2" placeholder="user_id" title="user_id"/>
+                    <input name="loginname"  type='text' ng-model="loginname" class="tooltips span2" placeholder="loginname" title="loginname"/>
+                    <input name="platform"  type='text' ng-model="platform" class="tooltips span2" placeholder="platform" title="platform"/>
+                    <label>From</label><input name="date_start" data-type="date" ng-model="date_start" type="text" class="tooltips span2 dpd1"/>
+                    <label>To</label><input name="date_end" data-type="date" ng-model="date_end" type="text" class="tooltips span2 dpd2"/>
+                    <button class="toolbar-search btn  J_bt_search" ng-click="search()"><i class="icon-search"></i> Search</button>
+                    <button class="toolbar-search btn tooltips" ng-click="clearSearch()" title="Clean Search"><i class="icon-check-empty"></i> Clean</button>
+                </td></tr></thead>
+                <tbody>
+                <tr>
+                    <th data-fieldName="user_id" data-fieldType="string" data-width="8%">User Id</th>
+                    <th data-fieldName="loginname" data-fieldType="string" data-width="8%">login Name</th>
+                    <th data-fieldName="create_at" data-fieldType="date" data-width="10%" data-format="{0:yyyy-MM-dd HH:mm:ss}">Create At</th>
+                    <th data-fieldName="fans_num" data-fieldType="string" data-width="10%">Fans Num</th>
+                    <th data-fieldName="data_source" data-fieldType="string" data-width="8%">Data Source</th>
+                    <th data-fieldName="platform" data-fieldType="string" data-width="8%">Platform</th>
+                    <th data-fieldName="success" data-fieldType="string" data-width="8%">Success</th>
+                    <th data-fieldName="failure" data-fieldType="string" data-width="8%">Failure</th>
+                    <th data-fieldName="canonical_ids" data-fieldType="string" data-width="8%">Canonical Ids</th>
+                    <th data-fieldName="results" data-fieldType="string" data-width="8%">Results</th>
+                </tr>
+                </tbody>
+                <tfoot>
+                    <tr><td>
+                    <table>
+                    <tr>
+                        <td width="8%"></td>
+                        <td width="8%"></td>
+                        <td width="10%"></td>
+                        <td width="10%"></td>
+                        <td width="8%"></td>
+                        <td width="8%"></td>
+                        <td width="8%"><span id="totalSuccess_count"></span></td>
+                        <td width="8%"><span id="totalFailure_count"></span></td>
+                        <td width="8%"></td>
+                        <td width="8%"></td>
+                    </tr>
+                    </table>
+                    </td></tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</section>
+<!--#include file="../_footer.html"-->
+<script type="text/javascript" src="../../../template_content/assets/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+<script src="controller/push_logs_list.js"></script>
+<!--#include file="../_footer_end.html"-->

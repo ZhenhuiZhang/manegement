@@ -1,0 +1,138 @@
+<!--#include file="../_header.html"-->
+<title>Detail</title>
+<link rel="stylesheet" type="text/css" href="../../../template_content/assets/bootstrap-datetimepicker/css/datetimepicker.css"
+/>
+<meta name="permission" content="{'parentname':'finance','name':'deposit_detail','intro':'deposit edit'}" data-roles="{'parentname':'deposit_detail','name': 'deposit-detail-init','intro':'deposit detail form','element':'form','CRUD':'R','api':'/finance/depositFindOne'}"
+/>
+
+<!--#include file="../_header_end.html"-->
+<section id="innerSection" ng-controller="deposit-detail">
+    <div class="row">
+        <div class="col-lg-12">
+            <!--breadcrumbs start -->
+            <ul class="breadcrumb">
+                <li><a href="#"><i class="icon-home"></i> Home</a></li>
+                <li><a href="deposit_list.html"><i class="icon-home"></i> Deposit List</a></li>
+                <li class="active">Deposit Edit</li>
+            </ul>
+            <!--breadcrumbs end -->
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+
+            <section class="panel">
+                <header class="panel-heading">
+                    Deposit
+                </header>
+                <div class="panel-body">
+                    <form class="form-horizontal tasi-form" method="post" name="submit_form" ng-submit="submit_form.$valid && submit_form.submit()">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Event</label>
+                            <div class="col-sm-10">
+                                <label class="radio-inline">
+                                    <input class="plattypeform" type="radio" name="type" value="employee" ng-model='model.type' ng-checked="model.type=='employee'" ng-disabled="edit" required> employee
+                                </label>
+                                <label class="radio-inline">
+                                    <input class="type" type="radio" name="type" value="IDemployee" ng-model='model.type' ng-checked="model.type=='IDemployee'" ng-disabled="edit" required> IDemployee
+                                </label>
+                                <label class="radio-inline">
+                                    <input class="type" type="radio" name="type" value="presented" ng-model='model.type' ng-checked="model.type=='presented'" ng-disabled="edit" required> presented
+                                </label>
+                                <label class="radio-inline">
+                                    <input class="type" type="radio" name="type" value="OPEX" ng-model='model.type' ng-checked="model.type=='OPEX'" ng-disabled="edit" required> OPEX
+                                </label>
+                                <label class="radio-inline"  ng-show="edit">
+                                    <input class="type" type="radio" name="type" value="employee_chargeOff" ng-model='model.type' ng-checked="model.type=='employee_chargeOff'" ng-disabled="edit" required> employee_chargeOff
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2">User</label>
+                            <div class="col-md-10" style="padding-left:0">
+                                <!--遍历开始-->
+                                <div class="panel-body col-md-12" ng-repeat="param in model.operation" style="padding:0">
+                                    <div class="input-group input-large col-md-8" style="padding:0 10px 0 16px;margin:6px 6px 0 0;">
+                                        <span class="input-group-addon">User id</span>
+                                        <input type="number" class="form-control" ng-model="param.user_id" ng-disabled="edit" ng-blur="checkUser($index,$event)">
+                                        <span class="input-group-addon">coin</span>
+                                        <input type="number" class="form-control" ng-model="param.coin" ng-disabled="edit">
+                                    </div>
+                                    <button class="btn btn-shadow btn-danger icon-minus col-md-2" style="margin:5px;" ng-click="minusEditorItem($index)" ng-hide="edit"></button>
+                                    <div class="alert alert-block alert-danger col-md-3" style="display:none">
+                                    </div>
+                                </div>
+                                <div class="panel-body col-md-10" style="padding:0 10px 0 16px;margin:6px 6px 0 0;"> 
+                                    <button class="btn btn-shadow btn-primary icon-plus" style="margin:3px;" type="button" ng-click="addEditorItem($event)" ng-hide="edit">Add User</button>
+                                </div>
+                                <!--遍历结束-->
+                                <!--</div>-->
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2" ng-show="edit">Statement</label>
+                            <!--遍历开始-->
+                            <div class="col-sm-10" style="display:inline-block;" ng-repeat="param in model.statement">
+                                {{param.result?"user id:"+param.user_id+',result:'+ param.result:"user id:"+param.user_id+",username:"+param.username+',before account'+ param.before_account+',last account:'+param.last_account}}
+                            </div>
+                        </div>
+
+                        <div class="form-group {{status_form.remark.$error.required ? 'has-error':''}}">
+                            <label class="col-sm-2 control-label">Remark</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control " ng-model="model.remark" name="remark" required ng-disabled="edit" ></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group" ng-hide="!edit">
+                            <label class="col-sm-2 control-label">Create time</label>
+                            <div class="col-sm-10" style="display:inline-block;">
+                                {{model.create_at | date : 'yyyy-MM-dd HH:mm.ss' }}
+                            </div>
+                        </div>
+
+                        <div class="form-group" ng-show="model.is_checkOff==1">
+                            <label class="col-sm-2 control-label">Check off at</label>
+                            <div class="col-sm-10" style="display:inline-block;">
+                                {{model.checkOff_at | date : 'yyyy-MM-dd HH:mm.ss' }}
+                            </div>
+                        </div>
+
+                        <div class="form-group" ng-hide="edit">
+                            <label class="col-sm-2">
+                                <input type="hidden" name="_id" value="{{model._id}}"/>
+                                <button ng-disabled="!submit_form.$valid || model.operation.length == 0" ng-click="save()" type="submit" class="btn btn-primary btn-lg"
+                                    data-roles="{'parentname':'deposit_detail','name':'deposit-detail-submit','intro':'deposit detail update/add','element':'button','CRUD':'CU','api':['/finance/depositCreate']}"
+                                >Submit</button>
+                            </label>
+                        </div>
+
+                        <div class="form-group" ng-show="chargeOff">
+                            <label class="col-sm-2">
+                                <input type="hidden" name="_id" value="{{model._id}}"/>
+                                <button ng-disabled="!submit_form.$valid" ng-click="chargeOffsave()" type="submit" class="btn btn-primary btn-lg"
+                                    data-roles="{'parentname':'deposit_detail','name':'deposit-detail-submit','intro':'deposit detail update/add','element':'button','CRUD':'CU','api':['/finance/chargeOff']}"
+                                >Charge Off</button>
+                            </label>
+                        </div>
+
+                        <div class="form-group" ng-click='dev=1'>
+                            <label class="col-sm-2 control-label">Whole Model For Develop</label>
+                            <div class="col-sm-10" ng-hide='dev!=1'>
+                                <pre> {{ model | json : 4}}</pre>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+<!--#include file="../_footer.html"-->
+<script src="controller/deposit_detail.js"></script>
+<!--#include file="../_footer_end.html"-->

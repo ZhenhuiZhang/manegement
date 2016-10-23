@@ -1,0 +1,70 @@
+<!--#include file="../_header.html"-->
+<title>pay items</title>
+<meta name="permission" content="{'name':'finance','intro':'Finance Manager Module'}" />
+<meta name="permission" content="{'parentname':'finance','name':'pay_items_list','intro':'Pay Items List'}" 
+    data-roles="{'parentname':'pay_items_list','name':'pay_items_list_grid','intro':'Pay Items List Grid','element':'grid','CRUD':'R','api':['/payItem/find','/payItem/export']}"
+    />
+<link rel="stylesheet" type="text/css" href="../../../template_content/assets/bootstrap-datetimepicker/css/datetimepicker.css" />
+<!--#include file="../_header_end.html"-->
+<section id="innerSection" ng-controller="pay_items_list">
+    <div class="row">
+        <div class="col-lg-12">
+            <!--breadcrumbs start -->
+            <ul class="breadcrumb">
+                <li><a href="#"><i class="icon-home"></i> Home</a></li>
+                <li><a href="#">Finance</a></li>
+                <li class="active">Pay items</li>
+                <a href="../report/pay_item_month_report.html" class="btn btn-primary icon-th-large" style="border-radius: 0"> Month Report</a>
+                <a href="../report/pay_item_day_report.html" class="btn btn-primary icon-th" style="border-radius: 0"> Day Report</a>
+            </ul>
+            <!--breadcrumbs end -->
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <table class="angular-grid" id="pay_items_grid"
+                ng-grid-kendoui="'url':'{{gridUrl}}','limit':'15','width':'98%','selectable':'multiple, row'">
+                <thead><tr><td>
+                    <select name='status' ng-model="status">
+                        <option value=''>-all-(Status)</option>
+                        <option value="0">Wait For Pay</option>
+                        <option value="10">Pay Successful</option>
+                        <option value="20">Pay fail</option>
+                    </select>
+                    <input name="user_id" ng-model="user_id" type='text' ng-keydown="search2($event)" class="tooltips span2" placeholder="User Id" title="User Id"/>
+                    <input name="loginname" ng-model="loginname" type='text' ng-keydown="search2($event)" class="tooltips span2" placeholder="Username" title="Username"/>
+                    <input name="platform" ng-model="platform" type='text' ng-keydown="search2($event)" class="tooltips span2" placeholder="platform" title="platform"/>
+                    <input name="order_id" ng-model="order_id" type='text' ng-keydown="search2($event)" class="tooltips span2" placeholder="OrderId" title="OrderId"/>
+                    <label>From</label><input name="date_start" data-type="date" ng-model="date_start" type="text" class="tooltips span2 dpd1"/>
+                    <label>To</label><input name="date_end" data-type="date" ng-model="date_end" type="text" class="tooltips span2 dpd2"/>
+                    <button class="toolbar-search btn  J_bt_search" ng-click="search()"><i class="icon-search"></i> Search</button>
+                    <button class="toolbar-search btn tooltips" ng-click="clearSearch()" title="Clear Search"><i class="icon-check-empty"></i> Clear</button>
+                    <label> All Value is :</label><label id='totalCost' ></label><label>Coin</label>
+                </td></tr></thead>
+                <tbody>
+                <tr>
+                    <th data-fieldName="create_at" data-fieldType="date" data-format="{0:yyyy-MM-dd HH:mm:ss}" data-width="15%">Pay time</th>
+                    <th data-fieldName="order_id" data-fieldType="string">Order id</th>
+                    <th data-fieldName="platform" data-fieldType="string">Platform</th>
+                    <th data-fieldName="user_id" data-fieldType="string">UserID</th>
+                    <th data-fieldName="loginname" data-fieldType="string">UserName</th>
+                    <th data-fieldName="currency" data-fieldType="number">Currency</th>
+                    <th data-fieldName="price" data-fieldType="number">Price</th>
+                    <th data-fieldName="gold" data-fieldType="number">Gold</th>
+                    <th data-fieldName="status" data-fieldType="string">Status</th>
+                    <th data-fieldName="update_at" data-fieldType="date" data-format="{0:yyyy-MM-dd HH:mm:ss}" data-width="15%">Update Time</th>
+                    <th data-fieldName="handlebar" data-fieldType="string" data-width="10%">Operate</th>
+                </tr>
+                </tbody>
+                <tfoot><tr><td>
+                    <button type="button" class="btn btn-info btn-xs" id='download_btn'><i class="icon-download"></i> Download</button>
+                </td></tr></tfoot>
+            </table>
+        </div>
+    </div>
+</section>
+<!--#include file="../_footer.html"-->
+<script src="controller/pay_items.js"></script>
+<script type="text/javascript" src="../../../template_content/assets/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+<!--#include file="../_footer_end.html"-->

@@ -1,0 +1,18 @@
+/*kendoui grid默认样式*/
+table.angular-grid{ display:none; }
+
+.toolbar input {margin-bottom:0;}
+.toolbar select {margin:0; width: auto}
+.toolbar .col{margin-top:0;}
+
+.statusbar select{margin:0;}
+
+form .required {background-image:url('../img/red_triangle.png'); background-repeat:no-repeat; background-size:5px 5px;}
+
+.breadcrumb .btn{float:right; margin-top:-7px}
+
+.mobiletr{  }
+.mobiletr th,
+.mobiletr td{ border-bottom:1px #f3f3f3 solid; }
+.mobiletr th.bottom,
+.mobiletr td.bottom{ border-bottom:1px #c3c3c3 solid; }

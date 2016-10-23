@@ -1,0 +1,49 @@
+<!--#include file="../_header.html"-->
+<link rel="stylesheet" type="text/css" href="../../../template_content/assets/bootstrap-datetimepicker/css/datetimepicker.css" />
+<title>Push List</title>
+<meta name="permission" content="{'name':'user','intro':'Push List'}" />
+<meta name="permission" content="{'parentname':'push','name':'push_list','intro':'Push List'}" 
+    data-roles="{'parentname':'push_list','name':'push_list','intro':'Push List','element':'grid','CRUD':'R','api':'/push/find'}"
+    />
+<!--#include file="../_header_end.html"-->
+<section id="innerSection" ng-controller="push-list">
+    <div class="row">
+        <div class="col-lg-12">
+            <!--breadcrumbs start -->
+            <ul class="breadcrumb">
+                <li><a href="#"><i class="icon-home"></i> Home</a></li>
+                <li class="active">Push List</li>
+                <a href="push_edit.html" class="btn btn-primary icon-plus">Add</a>
+            </ul>
+            <!--breadcrumbs end -->
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <table class="angular-grid" id="user_status_logs_list_grid"
+                ng-grid-kendoui="'url':'{{gridUrl}}','limit':'15','width':'98%','selectable':'multiple, row'">
+                <thead><tr><td>
+                    <button class="toolbar-search btn tooltips" ng-click="clearSearch()" title="清除记录的搜索条件"><i class="icon-check-empty"></i>Clean</button>
+                </td></tr></thead>
+                <tbody>
+                    <tr>
+                        <th data-fieldName="_id" data-fieldType="string" data-width="16%">ID</th>
+                        <th data-fieldName="name" data-fieldType="string">Name</th>
+                        <th data-fieldName="userrange" data-fieldType="string" data-width="15%">User Range</th>
+                        <th data-fieldName="push_detail" data-fieldType="string" data-width="20%">Push Detail</th>
+                        <th data-fieldName="content" data-fieldType="string" >Content</th>
+                        <th data-fieldName="push_status" data-fieldType="string" data-width="5%">Status</th>
+                        <th data-fieldName="is_push_now" data-fieldType="string" data-width="8%">Is Schedule</th> 
+                        <th data-fieldName="create_at" data-fieldType="date" data-format="{0:yyyy-MM-dd HH:mm:ss}" data-width="10%">Create_at</th>
+                        <th data-fieldName="operation" data-fieldType="string" data-width="10%">Operation</th>     
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+<!--#include file="../_footer.html"-->
+<script type="text/javascript" src="../../../template_content/assets/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+<script src="controller/push_list.js"></script>
+<!--#include file="../_footer_end.html"-->

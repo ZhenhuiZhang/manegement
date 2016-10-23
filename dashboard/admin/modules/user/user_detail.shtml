@@ -1,0 +1,124 @@
+<!--#include file="../_header.html"-->
+<title>Detail</title>
+<meta name="permission" 
+        content="{'parentname':'user','name':'user_detail','intro':'User Manager detail'}" 
+        data-roles="{'parentname':'user_detail','name': 'user-detail-init','intro':'user detail form','element':'form','CRUD':'R','api':'/user/findOne'}"
+/>
+<link rel="stylesheet" type="text/css" href="../../../template_content/assets/bootstrap-datetimepicker/css/datetimepicker.css" />
+<link rel="stylesheet" type="text/css" href="../../../template_content/assets/bootstrap-fileupload/bootstrap-fileupload.css" />
+<!--#include file="../_header_end.html"-->
+<section id="innerSection" ng-controller="user-detail">
+    <div class="row">
+        <div class="col-lg-12">
+            <!--breadcrumbs start -->
+            <ul class="breadcrumb">
+                <li><a href="#"><i class="icon-home"></i> Home</a></li>
+                <li><a href="user_list.html">User Manager</a></li>
+                <li class="active">User{{model._id ? 'Detail': 'Add'}}</li>
+            </ul>
+            <!--breadcrumbs end -->
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+
+            <section class="panel">
+                <header class="panel-heading">
+                    User {{model.user_id ? 'detail——user_id:'+ model.user_id: 'Add'}}
+                </header>
+                <div class="panel-body">
+                    <form class="form-horizontal tasi-form" method="post" name="submit_form" ng-submit="submit_form.$valid && submit_form.submit()">
+                        <div class="form-group {{submit_form.loginname.$error.required ? 'has-error':''}}">
+                            <label class="col-sm-2 col-sm-2 control-label">User Name</label>
+                            <div class="col-sm-10">
+                                <input name="loginname" ng-model="model.loginname" class="form-control input-lg" type="text" placeholder="loginname" required readonly="readonly">
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <label class="col-sm-2 col-sm-2 control-label">Avatar</label>
+                            <div class="col-sm-10" >
+                                <img style="width: 50px;" ng-src="{{model.avatar | nonopic}}"/>
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <label class="col-sm-2 col-sm-2 control-label">Live Pic</label>
+                            <div class="col-sm-10"  >
+                                <img style="width: 200px;" ng-src="{{model.pic | nonopic}}"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">Location</label>
+                            <div class="col-sm-10">
+                                {{model.location}}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">Gift Revenue History</label>
+                            <div class="col-sm-10">
+                                {{model.gift_revenue_history}}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">Fans</label>
+                            <div class="col-sm-10">
+                                {{model.fans}}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">Viwers</label>
+                            <div class="col-sm-10">
+                                {{model.viewers}}
+                            </div>
+                        </div>
+
+                        
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">Host Status</label>
+                            <div class="col-sm-10">
+                                {{model.anchor_status_msg}}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">Registration time</label>
+                            <div class="col-sm-10">
+                                {{model.create_at | date : 'yyyy-MM-dd HH:mm.ss'}}
+                            </div>
+                        </div>
+                    
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">active time</label>
+                            <div class="col-sm-10">
+                                {{model.update_at | date : 'yyyy-MM-dd HH:mm.ss'}}
+                            </div>
+                        </div>
+                        
+
+                        <div class="form-group">
+                            <label class="col-sm-12">
+                                <input type="hidden" name="user_id" value="{{model.user_id}}"/>
+                                <button ng-disabled="!submit_form.$valid" ng-click="save()" type="submit" class="btn btn-primary btn-lg"
+                                    data-roles="{'parentname':'user_detail','name':'user-detail-submit','intro':'User detail update','element':'button','CRUD':'CU','api':'/user/update'}"
+                                >Submit</button>
+                            </label>
+                        </div>
+
+                        <div class="form-group" ng-click='dev=1'>
+                            <label class="col-sm-2 control-label">Whole Model For Develop</label>
+                            <div class="col-sm-10" ng-hide='dev!=1'>
+                                <pre> {{ model | json : 4}}</pre>
+                            </div>
+                        </div>
+                        
+                    </form>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+<!--#include file="../_footer.html"-->
+
+<script src="../../../template_content/assets/bootstrap-fileupload/bootstrap-fileupload.js"></script>
+
+<script src="controller/user_detail.js"></script>
+<!--#include file="../_footer_end.html"-->

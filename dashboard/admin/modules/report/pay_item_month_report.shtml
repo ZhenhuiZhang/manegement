@@ -1,0 +1,91 @@
+<!--#include file="../_header.html"-->
+<title>Pay Items Month Report</title>
+<meta name="permission" content="{'name':'pay_item_month_report','intro':'pay_item_month_report Manager Module'}" />
+<meta name="permission" content="{'parentname':'pay_item_month_report','name':'pay_item_month_report_list','intro':'Pay Items Month Report List'}" 
+    data-roles="{'parentname':'pay_item_month_report_list','name':'pay_item_month_report_list_grid','intro':'Pay Items Month Report List Grid','element':'grid','CRUD':'R','api':['/payItemMonthReport/find','/payItemMonthReport/export']}"
+    />
+<link rel="stylesheet" type="text/css" href="../../../template_content/assets/bootstrap-datetimepicker/css/datetimepicker.css" />
+<!--#include file="../_header_end.html"-->
+<section id="innerSection" ng-controller="pay-item-month-report-list">
+    <div class="row">
+        <div class="col-lg-12">
+            <!--breadcrumbs start -->
+            <ul class="breadcrumb">
+                <li><a href="#"><i class="icon-home"></i> Home</a></li>
+                <li><a href="#">Finance</a></li>
+                <li class="active">Pay Items Month Report</li>
+                <a href="pay_item_month_report.html" class="btn btn-primary icon-th-large" style="border-radius: 0"> Month Report</a>
+                <a href="pay_item_day_report.html" class="btn btn-primary icon-th" style="border-radius: 0"> Day Report</a>
+            </ul>
+            <!--breadcrumbs end -->
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <table class="angular-grid" id="pay_item_month_report_grid"
+                ng-grid-kendoui="'url':'{{gridUrl}}','limit':'15','width':'98%','selectable':'multiple, row'">
+                <thead><tr><td class="breadcrumb">
+                    <div class='search_input col-lg-9'>
+                        <input name="user_id" ng-model="user_id"  type='text' ng-keydown="search2($event)" class="tooltips span2" placeholder="user_id" title="user_id"/>
+                        <input name="gold" ng-model="gold"  type='text' ng-keydown="search2($event)" class="tooltips span2" placeholder="gold" title="gold"/>
+                        <input name="currency" ng-model="currency"  type='text' ng-keydown="search2($event)" class="tooltips span2" placeholder="currency" title="currency"/>
+                        <select name='platform' ng-model="platform">
+                            <option value=''>-All-(Platform)</option>
+                            <option value="apple">apple</option>
+                            <option value="mimopay">mimopay</option>
+                            <option value="google">google</option>
+                            <option value="unipin">unipin</option>
+                        </select>
+                        <select name='status' ng-model="status">
+                            <option value=''>-all-(Status)</option>
+                            <option value="0">Wait For Pay</option>
+                            <option value="10">Pay Successful</option>
+                            <option value="20">Pay fail</option>
+                        </select>
+                        <label>From</label><input name="date_start" data-type="date" ng-model="date_start" type="text" class="tooltips span2 dpd1"/>
+                        <label>To</label><input name="date_end" data-type="date" ng-model="date_end" type="text" class="tooltips span2 dpd2"/>
+                    </div>
+
+                    <div class="search_btn col-lg-3">
+                        <button class="toolbar-search btn  J_bt_search" ng-click="search()"><i class="icon-search"></i> Search</button>
+                        <button class="toolbar-search btn tooltips" ng-click="clearSearch()" title="Clear Search"><i class="icon-check-empty"></i> Clear</button>
+                    </div>
+
+                    <div class="btn-group option col-lg-9" data-toggle="buttons">
+                        <label class="btn btn-primary btn-sm">
+                            <input name='dimension' type="checkbox" value="status"> status
+                        </label>
+                        <label class="btn btn-primary btn-sm">
+                            <input name='dimension' type="checkbox" value="user_id"> user id
+                        </label>
+                        <label class="btn btn-primary btn-sm">
+                            <input name='dimension' type="checkbox" value="platform"> platform
+                        </label>
+                    </div>
+                </td></tr></thead>
+                <tbody>
+                <tr>
+                    <th data-fieldName="date" data-fieldType="string">date</th>
+                    <th data-fieldName="gold" data-fieldType="string">gold</th>
+                    <th data-fieldName="currency" data-fieldType="string">currency</th>
+                    <th data-fieldName="sum_account" data-fieldType="string">Price</th>
+                    <th data-fieldName="sum_count" data-fieldType="string">Pay Item Count</th>
+                    <th data-fieldName="user_id" data-fieldType="string">UserID</th>
+                    <th data-fieldName="loginname" data-fieldType="string">loginname</th>
+                    <th data-fieldName="platform" data-fieldType="string">platform</th>
+                    <th data-fieldName="status" data-fieldType="string">status</th>
+                    <th data-fieldName="details" data-fieldType="string">details</th>
+                </tr>
+                </tbody>
+                <tfoot><tr><td>
+                    <button type="button" class="btn btn-info btn-xs" id='download_btn'><i class="icon-download"></i> Download</button>
+                </td></tr></tfoot>
+            </table>
+        </div>
+    </div>
+</section>
+<!--#include file="../_footer.html"-->
+<script src="controller/pay_item_month_report.js"></script>
+<script type="text/javascript" src="../../../template_content/assets/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+<!--#include file="../_footer_end.html"-->

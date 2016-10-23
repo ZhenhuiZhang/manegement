@@ -1,0 +1,77 @@
+<!--#include file="../_header.html"-->
+<title>Publish</title>
+<meta name="permission" 
+        content="{'parentname':'config','name':'config_detail','intro':'config publish'}" 
+        data-roles="{'parentname':'config_detail','name': 'config-detail-init','intro':'config publish','element':'form','CRUD':'U','api':'/configVersion/findOne'}"
+/>
+<!--#include file="../_header_end.html"-->
+<section id="innerSection" ng-controller="config-version-publish">
+    <div class="row">
+        <div class="col-lg-12">
+            <!--breadcrumbs start -->
+            <ul class="breadcrumb">
+                <li><a href="#"><i class="icon-home"></i> Home</a></li>
+                <li><a href="config_version_list.html"><i class="icon-home"></i> Configuration List</a></li>
+                <li class="active">Configuration {{model.status==10 ? 'View': 'Publish'}}</li>
+            </ul>
+            <!--breadcrumbs end -->
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+
+            <section class="panel">
+                <header class="panel-heading">
+                    Settings
+                </header>
+                <div class="panel-body">
+                    <form class="form-horizontal tasi-form" method="post" name="submit_form" ng-submit="submit_form.$valid && submit_form.submit()">
+                        <div class="form-group" ng-hide="!model._id">
+                            <label class="col-sm-2 control-label">Platform</label>
+                            <div class="col-sm-10" style="display:inline-block;">
+                                {{model.platform}}
+                            </div>
+                        </div>
+                        <div class="form-group" ng-hide="!model._id">
+                            <label class="col-sm-2 control-label">Platform Version</label>
+                            <div class="col-sm-10" style="display:inline-block;">
+                                {{model.platform_ver}}
+                            </div>
+                        </div>
+                        <div class="form-group" ng-hide="!model._id">
+                            <label class="col-sm-2 control-label">Location</label>
+                            <div class="col-sm-10" style="display:inline-block;">
+                                {{model.location.indexOf('all')!=-1? 'Indonesia,Malaysia,Turkey,Russian,Vietnam,Thailand':model.location.join(',')}}
+                            </div>
+                        </div>
+                        <div class="form-group" styel="position:relative">
+                            <!--<label class="col-sm-2 control-label">Whole Model For Develop</label>-->
+                            <div class="col-sm-12">
+                                <button id='copy' class=" btn btn-primary  icon-file-text-alt"  style="position:absolute;right:40px;top:10px">&nbsp&nbspCopy</button>
+                                <pre id="datasComtent"> {{ model.config | json : 4}}</pre>
+                            </div>
+                        </div>
+
+
+                         <div class="form-group" ng-show="show">
+                            <label class="col-sm-2">
+                                <input type="hidden" name="_id" value="{{model._id}}"/>
+                                <button ng-disabled="!model" ng-click="publish()" type="submit" class="btn btn-primary btn-lg"
+                                    data-roles="{'parentname':'config_detail','name':'config-detail-init','intro':'config-detail update/add','element':'button','CRUD':'U','api':['/configVersion/update']}"
+                                >Publish</button>
+                            </label>
+                        </div>
+
+                    </form>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+
+<script src="../../../bower_components/jquery/jquery.min.js"></script>
+<!--#include file="../_footer.html"-->
+    <script src="../../../bower_components/jquery-zclip/jquery.zclip.js"></script>
+    <script src="controller/config_version_publish.js"></script>
+<!--#include file="../_footer_end.html"-->

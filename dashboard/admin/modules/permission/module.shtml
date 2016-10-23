@@ -1,0 +1,40 @@
+<!--#include file="../_header.html"-->
+    <title>Permission Module List</title>
+    <meta name="permission" content="{'name':'permission','intro':'Permission Manager'}" />
+    <meta name="permission" content="{'parentname':'permission','name':'permission_module','intro':'Permission Module Manager List'}" 
+        data-roles="{'parentname':'permission_module','name':'permission_module_grid','intro':'Permission Module Manager Grid','element':'grid','CRUD':'R','api':'/permissionModules/find'}"
+        />
+<!--#include file="../_header_end.html"-->
+<section id="innerSection" ng-controller="permission-module-list">
+    <div class="row">
+        <div class="col-lg-12">
+            <!--breadcrumbs start -->
+            <ul class="breadcrumb">
+                <li><a href="#"><i class="icon-home"></i> Home</a></li>
+                <li>Permission</li>
+                <li class="active">Module List</li>
+                <button class="btn btn-primary icon-plus" ng-click='scan()'>Scan</button>
+            </ul>
+            <!--breadcrumbs end -->
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <table class="angular-grid" id="permission_module_grid"
+                ng-grid-kendoui="'url':'{{gridUrl}}','pageable':{},'width':'98%','selectable':'multiple, row'">
+                <tbody>
+                <tr>
+                    <th data-fieldName="_id" data-fieldType="string" data-width="18%">_id</th>
+                    <th data-fieldName="name" data-fieldType="string" data-width="20%">Name</th>
+                    <th data-fieldName="intro" data-fieldType="string">Intro</th>
+                    <th data-fieldName="parentname" data-fieldType="string" data-width="20%">parent</th>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+<!--#include file="../_footer.html"-->
+    <script src="controller/module.js"></script>
+<!--#include file="../_footer_end.html"-->

@@ -1,0 +1,39 @@
+<!--#include file="../_header.html"-->
+    <title>Welcome</title>
+<!--#include file="../_header_end_modal.html"-->
+<div ng-controller="welcomeModalCtrl">
+    <!-- BEGIN PAGE CONTENT-->
+    <div id="page">
+        <div class="row-fluid">
+            <div class="span12">
+                <!-- 内容区域 -------------------------------------------->
+
+                <!-- BEGIN SAMPLE FORM widget-->
+                <div class="widget">
+                    <div class="widget-body form">
+                        <!-- BEGIN FORM-->
+                        <form action="#" class="form-horizontal">
+
+                            <div class="control-group required">
+                                <label class="control-label">name</label>
+                                <div class="controls">
+                                    <input type="text" class="span6" ng-model="data.name" style="width:95%" required/>
+                                </div>
+                            </div>
+
+                        </form>
+                        <!-- END FORM-->
+                    </div>
+                </div>
+                <!-- END SAMPLE FORM widget-->
+
+                <!-- 内容区域 END ---------------------------------------->
+            </div>
+        </div>
+        <!--END:BODY-->
+    </div>
+    <!-- END PAGE CONTENT-->
+</div>
+<!--#include file="../_footer_modal.html"-->
+<script src="controller/welcome-modal-controller.js"></script>
+<!--#include file="../_footer_end_modal.html"-->

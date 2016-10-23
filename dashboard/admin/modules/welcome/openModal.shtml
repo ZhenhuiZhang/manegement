@@ -1,0 +1,16 @@
+<!--#include file="../_header.html"-->
+    <title>Welcome</title>
+<!--#include file="../_header_end.html"-->
+    <section ng-controller="openModalCtrl" id="innerSection">
+              <section class="wrapper">
+                    
+                        
+                  <div class="col-lg-12">
+                      <button ng-click="doOpenModal()">openModal</button>
+                  </div>
+                  </section>
+    </section>
+    
+<!--#include file="../_footer.html"-->
+<script src="controller/openModal.js"></script>
+<!--#include file="../_footer_end.html"-->

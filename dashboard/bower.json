@@ -1,0 +1,35 @@
+{
+  "name": "BFEFramework",
+  "version": "1.0.0",
+  "authors": [
+    "linwenlong <lz@leadwit.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angularjs": "1.2.5",
+    "angular-route": "1.2.5",
+    "angular-resource": "1.2.5",
+    "jquery": "1.8.3",
+    "jquery.cookie": "~1.4.1",
+    "jquery.query.js": "~2.1.7",
+    "labjs": "*",
+    "less": "~1.7.5",
+    "blockui": "*",
+    "font-awesome": "3.0",
+    "bootstrap-datepicker": "1.2.0",
+    "blueimp-md5": "js-md5#~1.1.1",
+    "moment": "^2.13.0",
+    "lodash": "^4.13.1",
+    "eventproxy": "^0.3.1",
+    "jsoneditor": "^5.5.7",
+    "jquery-zclip": "^1.1.5",
+    "moment-timezone": "^0.5.6"
+  }
+}

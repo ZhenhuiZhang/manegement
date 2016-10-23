@@ -1,0 +1,63 @@
+<!--#include file="../_header.html"-->
+<link rel="stylesheet" type="text/css" href="../../../template_content/assets/bootstrap-datetimepicker/css/datetimepicker.css" />
+<title>Config Version</title>
+<meta name="permission" content="{'name':'finance','intro':'Deposit Manager Module'}" />
+<meta name="permission" content="{'parentname':'finance','name':'deposit_list','intro':'Deposit List'}" data-roles="{'parentname':'deposit_list','name':'deposit_list_grid','intro':'Deposit List Grid','element':'grid','CRUD':'R','api':'/finance/depositFind'}"
+/>
+<!--#include file="../_header_end.html"-->
+<!--#include file="../_header.html"-->
+<section id="innerSection" ng-controller="deposit-list">
+    <div class="row">
+        <div class="col-lg-12">
+            <!--breadcrumbs start -->
+            <ul class="breadcrumb">
+                <li><a href="#"><i class="icon-home"></i> Home</a></li>
+                <li class="active">Deposit List</li>
+                <a href="deposit_detail.html" class="btn btn-primary icon-dollar">&nbspTop up</a>
+                <a href="deposit_order.html" class="btn btn-primary icon-credit-card" style="margin-right:5px;">&nbspOrder Fix</a>
+            </ul>
+            <!--breadcrumbs end -->
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <table class="angular-grid" id="deposit_list_grid" ng-grid-kendoui="'url':'{{gridUrl}}','limit':'15','width':'98%','selectable':'multiple, row'">
+                <thead><tr><td>
+                    <input name="user_id" ng-model="user_id"  type='text' class="tooltips span2" placeholder="UserId" title="UserId"/>
+                    <input name="order_id" ng-model="order_id" type='text' class="tooltips span2" placeholder="Order Id" title="OrderId"/>
+                    <select name='type' ng-model="type">
+                        <option value=''>-all-(Type)</option>
+                        <option value="employee">employee</option>
+                        <option value="IDemployee">IDemployee</option>
+                        <option value="employee_chargeOff">employee_chargeOff</option>
+                        <option value="presented">presented</option>
+                        <option value="OPEX">OPEX</option>
+                        <option value="checking">checking</option>
+                    </select>
+                    <label>From</label><input name="date_start" ng-model="date_start" type="text" class="tooltips span2 dpd1"/>
+                    <label>To</label><input name="date_end" ng-model="date_end" type="text" class="tooltips span2 dpd2"/>
+                    
+                    <button class="toolbar-search btn  J_bt_search" ng-click="search()"><i class="icon-search"></i> Search</button>
+                    <button class="toolbar-search btn tooltips" ng-click="clearSearch()" title="Clear Search"><i class="icon-check-empty"></i> Clear</button>
+                </td></tr></thead>
+                <tbody>
+                    <tr>
+                        <th data-fieldName="create_at" data-fieldType="date" data-format="{0:yyyy-MM-dd HH:mm:ss}" data-width="13%">Operation time</th>
+                        <th data-fieldName="detail" data-fieldType="string" >Detail</th>
+                        <th data-fieldName="admin" data-fieldType="string" data-width="10%">Admin</th>
+                        <th data-fieldName="type" data-fieldType="string" data-width="12%">Type</th>
+                        <th data-fieldName="state" data-fieldType="string" >Account status</th>
+                        <th data-fieldName="remark" data-fieldType="string" data-width="8%">Remark</th>
+                        <th data-fieldName="checkOff_at" data-fieldType="date" data-format="{0:yyyy-MM-dd HH:mm:ss}" data-width="13%">Recover time</th>
+                        <th data-fieldName="handlebar" data-fieldType="string" data-width="8%">Operation</th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+<!--#include file="../_footer.html"-->
+<script type="text/javascript" src="../../../template_content/assets/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+<script src="controller/deposit_list.js"></script>
+<!--#include file="../_footer_end.html"-->

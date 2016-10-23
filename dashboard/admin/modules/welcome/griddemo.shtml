@@ -1,0 +1,98 @@
+<!--#include file="../_header.html"-->
+    <title>Welcome</title>
+<!--#include file="../_header_end.html"-->
+
+<!--
+控件特性说明：
+1、data-showInMobile="0"代表不显示在纵向排列时
+2、<tbody class="rowTemplateForMobile">...</tbody>为纵向显示时的自定义模板，如果不设置，系统将自动生成并显示指定字段    
+-->
+
+    <style>
+        .mobiletr{  }
+        .mobiletr th,.mobiletr td{ border-bottom:1px #f3f3f3 solid; }
+        .mobiletr th.bottom,.mobiletr td.bottom{ border-bottom:1px black solid; }
+    </style>
+    <section ng-controller="griddemoCtrl" id="innerSection">
+        <!-- page start-->
+        <div class="row">
+            <div class="col-lg-12">
+                <!--breadcrumbs start -->
+                <ul class="breadcrumb">
+                    <li><a href="#"><i class="icon-home"></i> Home</a></li>
+                    <li><a href="#">Library</a></li>
+                    <li class="active">Data</li>
+                </ul>
+                <!--breadcrumbs end -->
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <table class="angular-grid" id="demogridGrid"
+                    ng-grid-kendoui="'url':'./api/demo.json','limit':'15','width':'98%'">
+                    <thead><tr><td>
+                        <section class="form-horizontal tasi-form">
+                        <div class="col-lg-12">
+                            <div class="row">
+                                <div class="col-sm-3" style="padding:0;">
+                                    <input name="key" type='text' ng-keydown="search2($event)"  class="form-control tooltips" placeholder="用户名/手机号" title="用户名/手机号"/>
+                                </div>
+                                <div class="col-sm-2" style="padding:0;">
+                                    <select class="form-control m-bot15" name='editStatus' ng-model="editStatus">
+                                        <option value=''>-选择订单状态-</option>
+                                        <option value="0">未确认</option>
+                                        <option value="10">已确认</option>
+                                        <option value="11">已付款</option>
+                                        <option value="20">已发货</option>
+                                        <option value="21">已结清</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-7">
+                                    <button class="toolbar-search btn  J_bt_search" ng-click="search()"><i class="icon-search"></i> 搜索</button>
+                                    <button class="toolbar-search btn tooltips" ng-click="clearSearch()" title="清除记录的搜索条件"><i class="icon-check-empty"></i> 清除</button>
+                                </div>
+                            </div>
+                        </div>
+                        </section>
+                    </td></tr></thead>
+                    <tbody>
+                    <tr>
+                        <th data-fieldName="Orderid" data-fieldType="int" data-width="15%">订单号</th>
+                        <th data-fieldName="Overtime" data-fieldType="date" data-format="{0:yyyy-MM-dd HH:mm:ss}" data-width="15%">下单时间</th>
+                        <th data-fieldName="Ordertotalprice" data-fieldType="string">订单总额</th>
+                        <th data-fieldName="Consignee_name" data-fieldType="string">收货人</th>
+                        <th data-fieldName="Username" data-fieldType="string">会员名</th>
+                        <th data-fieldName="Status" data-fieldType="string" data-width="7%" data-showInMobile="0">订单状态</th>
+                        <th data-fieldName="Deliverstatus" data-fieldType="string" data-width="7%">发货状态</th>
+                        <th data-fieldName="handlebar" data-fieldType="string" data-width="10%">操作</th>
+                    </tr>
+                    </tbody>
+                    <!--<tbody class="rowTemplateForMobile">
+                        <tr class="mobiletr">
+                            <td>订单号</td>
+                            <td>#:Orderid#</td>
+                        </tr>
+                        <tr class="mobiletr">
+                            <td>下单时间</td>
+                            <td>#=kendo.format('{0:yyyy-MM-dd HH:mm:ss}',Overtime)#</td>
+                        </tr>
+                        <tr class="mobiletr">
+                            <td class="bottom">操作</td>
+                            <td class="bottom">#=__Renderer_helper(data,'handlebar','demoGrid')#</td>
+                        </tr>
+                    </tbody>-->
+                    <tfoot><tr><td>
+                        <select ng-model="action" ng-change="actionChange()">
+                            <option value="">&#45;&#45;&#45;&#45;批量操作&#45;&#45;&#45;&#45;</option>
+                            <option value="del">删除</option>
+                        </select>
+                    </td></tr></tfoot>
+                </table>
+            </div>
+        </div>
+    </section>
+
+<!--#include file="../_footer.html"-->
+<script src="controller/griddemo-controller.js"></script>
+
+<!--#include file="../_footer_end.html"-->

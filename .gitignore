@@ -1,0 +1,10 @@
+/node_modules
+/logs
+/.tmp
+tmp
+/dashboard/bower_components
+dashboard/admin/index.html
+dashboard/admin/modules/**/*.html
+dashboard/report/*
+dev/logs/*
+dashboard/other/*
