@@ -17,6 +17,9 @@ mongoose.connect(config.db, {
 
 // models
 require('./admin')
+require('./book')
+require('./user')
+require('./borrow_logs')
 
 mongoose.model('Admin').findOneAndUpdate({
       adminname: "jack",
@@ -29,3 +32,6 @@ mongoose.model('Admin').findOneAndUpdate({
 
 
 exports.Admin = mongoose.model('Admin')
+exports.Book = mongoose.model('Book')
+exports.User = mongoose.model('User')
+exports.Borrow = mongoose.model('Borrow')

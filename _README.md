@@ -1,14 +1,12 @@
 #BFEFramework
-大前端开发框架（包含浏览器端和NodeJS服务器端），基于JS/NodeJS全端开发。 Author: LinWenLong.  Email:lz@leadwit.com
+大前端开发框架（包含浏览器端和NodeJS服务器端），基于JS/NodeJS全端开发。
 
 ## 项目运行初始化
 - npm install
 - cd admin && bower install && cd ../
 
 ## 启动服务
-- grunt run         //使用生产环境配置
-- grunt dev         //使用开发环境配置
-- grunt test        //使用测试环境配置
+
 
 
 ## 特别注意！
@@ -36,17 +34,3 @@
     ├── README.md                    工程说明文档
     ├── bower.json                   bower安装文件
     ├── package.json                 package    
-
-##版本号管理约定
-每次合并到master都需要修改版本号，修改版本号的大小，依据发布情况决定，至少是小版本号+1。
-本工程使用version-updater(https://www.npmjs.com/package/version-updater)管理版本号，命令如下：
-安装：npm install -g version-updater
-使用：version [options] command [command-options]
-
--M --major [howMany]: increase by [howMany] the major version number (X+howMany.0.0); if [howMany] is missing, increase by 1
--m --minor [howMany]: increase by [howMany] the minor version number (x.X+howMany.0); if [howMany] is missing, increase by 1
--p --patch [howMany]: increase by [howMany] the patch version number (x.x.X+howMany); if [howMany] is missing, increase by 1
-
-如：
-version update -p
-更多说明，见上述链接。

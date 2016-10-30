@@ -14,9 +14,13 @@ var Models = CMS_Models
 exports.getAndCleanInputs = function(arr, inputs) {
     var new_arr = {};
     if(!arr) return new_arr;
+    var arrayReg = new RegExp(/\[(\w+)\]/);
+    var objectReg = new RegExp(/\{(\w+)\}/);
     arr.forEach(function(item){
+        var needParseObject = arrayReg.test(item) || objectReg.test(item);
         item = item.replace(/\*/g,'').replace(/\d?\?/g,'').replace(/\[|\]/g,'');
-        var reg = new RegExp(/\{(\w+)Model\}/);        
+        var reg = new RegExp(/\{(\w+)Model\}/);
+        
         if(item.startsWith('{') && reg.test(item) ){
             var model_name = reg.exec(item)[1];
             var Model = Models[model_name];
@@ -24,7 +28,18 @@ exports.getAndCleanInputs = function(arr, inputs) {
                 if(inputs[key]) new_arr[key] = inputs[key]
             }
         }else{
-            if(inputs[item]) new_arr[item] = inputs[item]
+            item = item.replace(/\{|\}/g, '');
+            if(inputs[item]) {
+                if (needParseObject) {
+                    try{
+                        new_arr[item] = JSON.parse(inputs[item]);
+                    } catch (err){
+                        new_arr[item] = inputs[item];
+                    }
+                } else {
+                    new_arr[item] = inputs[item];
+                }
+            }
         }
     })
     return new_arr;

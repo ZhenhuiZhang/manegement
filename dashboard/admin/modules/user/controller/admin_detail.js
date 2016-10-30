@@ -1,4 +1,4 @@
-framework.angular.controllers.controller("admin-detail", ['$scope', 'commonRES',
+framework.angular.controllers.controller("user-detail", ['$scope', 'commonRES',
 function($scope, service) {
     if(location.search){
         service.get({

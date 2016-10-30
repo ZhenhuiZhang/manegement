@@ -16,7 +16,6 @@ module.exports = function(app) {
         if(req.body.operate_log){
             var operate_log = lodash.clone(req.body.operate_log)
             delete req.body.operate_log
-            saveOperateLog(operate_log)
         }
         
         //本地存在API时，调用本地
@@ -58,20 +57,3 @@ module.exports = function(app) {
     }
 }
 
-function saveOperateLog(logs) {
-    try{
-        logs = typeof(logs)=='string' ? JSON.parse(logs) : logs 
-    }catch(e){}
-    if(!logs.__log_user)return
-    var model = {
-        user: logs.__log_user,
-        operation: logs.__log_operation,
-        submit_content: logs.__log_submit_content,
-        origin_content: logs.__log_origin_content,
-        create_at: tools.getMoment.utc().format()
-    }
-    logger.debug('saveOperateLog',logs,model)
-    Models.OperateLog.create(model,function(err,params) {
-        // logger.debug(err,params)
-    })
-}

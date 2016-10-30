@@ -1,29 +1,17 @@
-framework.angular.controllers.controller("user-detail", ['$scope', '$rootScope', 'commonRES','$filter',
+framework.angular.controllers.controller("book-detail", ['$scope', '$rootScope', 'commonRES','$filter',
     function ($scope, $rootScope, service, $filter) {
         var method = ""
-        $scope.status = {
-            '0':"未归还",
-            '10':"已归还"
-        }
-        $scope.model={
-            status:0
-        }
+
+
+
         if (location.search) {
             service.get({
-                api: 'user',
+                api: 'book',
                 method: 'findOne',
                 _id: location.search.split('=')[1]
             }, function (datas) {
                 $scope.model = datas.body;
-                    service.get({
-                    api: 'borrow',
-                    method: 'find',
-                    user_id: $scope.model.user_id,
-                }, function (datas) {
-                    $scope.history=datas.body.models
-                });
             });
-
         }
 
         $scope.save = function () {
@@ -31,17 +19,19 @@ framework.angular.controllers.controller("user-detail", ['$scope', '$rootScope',
                 return false;
             }
             var params = $.extend({}, $scope.model);
+            params.pic = encodeURIComponent(params.pic)
             console.log(params)
             service.save({
-                api: 'user',
+                api: 'book',
                 method: "createOrUpdate", 
-            }, {user:params}, function (result) {
+            }, {book:params}, function (result) {
+                console.log(params)
                 if (result.code == 0) {
                     alert('submit ok');
                     if($scope.model._id)
                         location.reload();
                     else
-                        location.href = 'user_list.html';
+                        location.href = 'book_list.html';
                 } else {
                     console.log(result.message);
                 }

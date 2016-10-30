@@ -1,17 +1,14 @@
 <!--#include file="../_header.html"-->
-<title>用户管理</title>
-<meta name="permission" content="{'name':'user','intro':'User Manager Module'}" />
-<meta name="permission" content="{'parentname':'user','name':'user_list','intro':'User Manager List'}" 
-    data-roles="{'parentname':'user_list','name':'user_list_grid','intro':'User Manager Grid','element':'grid','CRUD':'R','api':'/user/find'}"
-    />
+    <title>Gift List</title>
 <!--#include file="../_header_end.html"-->
 <section id="innerSection" ng-controller="user-list">
     <div class="row">
         <div class="col-lg-12">
             <!--breadcrumbs start -->
             <ul class="breadcrumb">
-                <li><a href="#"><i class="icon-home"></i> Home</a></li>
-                <li class="active">User Manager</li>
+                <li><a href="#"><i class="icon-home"></i> 主页</a></li>
+                <li class="active">用户列表</li>
+                <a href="user_detail.html" class="btn btn-primary icon-plus">添加用户</a>
             </ul>
             <!--breadcrumbs end -->
         </div>
@@ -19,38 +16,22 @@
 
     <div class="row">
         <div class="col-lg-12">
-            <table class="angular-grid" id="user_list_grid"
+            <table class="angular-grid" id="user_detail_grid"
                 ng-grid-kendoui="'url':'{{gridUrl}}','limit':'15','width':'98%','selectable':'multiple, row'">
                 <thead><tr><td>
-                    <input name="user_id" ng-model="user_id"  type='text'  class="tooltips span2" placeholder="user_id" title="user_id"/>
-                    <input name="loginname" ng-model="loginname"  type='text' ng-keydown="search2($event)" class="tooltips span2" placeholder="username" title="username"/>
-                    <input name="FCM_id" ng-model="FCM_id"  type='text' ng-keydown="search2($event)" class="tooltips span2" placeholder="FCM_id" title="FCM_id"/>
-                    <select name='location' ng-model="location" ng-options="p.value for p in COUNTRY_LIST track by p.text"></select>
-                    <!--<select name='anchor_live' ng-model="anchor_live">
-                        <option value=''>-All-(Host Live)</option>
-                        <option value="11">Liveing</option>
-                        <option value="13">No Living</option>
-                    </select>-->
-                    <button class="toolbar-search btn  J_bt_search" ng-click="search()"><i class="icon-search"></i> Search</button>
-                    <button class="toolbar-search btn tooltips J_bt_clean" ng-click="clearSearch()" title="Clean Search"><i class="icon-check-empty"></i> Clean</button>
+                    <input name="gift_id" ng-model="gift_id" type='text'  class="tooltips span2" placeholder="gift_id" title="gift_id"/>
+                    <button class="toolbar-search btn  J_bt_search" ng-click="search()"><i class="icon-search"></i> 查询</button>
+                    <button class="toolbar-search btn tooltips" ng-click="clearSearch()" title="Clean Search"><i class="icon-check-empty"></i> 清除搜索条件</button>
                 </td></tr></thead>
                 <tbody>
                 <tr>
-                    <th data-fieldName="user_id" data-fieldType="string" data-width="15%">User Id</th>
-                    <th data-fieldName="loginname" data-fieldType="string">Username</th>
-                    <th data-fieldName="location" data-fieldType="string" data-width="10%">Location</th>
-                    <th data-fieldName="create_at" data-fieldType="date" data-format="{0:yyyy-MM-dd HH:mm:ss}" data-width="15%">Register Time</th>
-                    <th data-fieldName="handlebar" data-fieldType="string" data-width="10%">Operation</th>            
+                    <th data-fieldName="name" data-fieldType="string" data-width="8%">姓名</th>
+                    <th data-fieldName="user_id" data-fieldType="string" data-width="8%">学号</th>
+                    <th data-fieldName="department" data-fieldType="string" data-width="10%">所属单位</th>
+                    <th data-fieldName="status" data-fieldType="string" data-width="10%">状态</th>
+                    <th data-fieldName="edit" data-fieldType="string" data-width="6%">操作</th>
                 </tr>
                 </tbody>
-                <!--<tfoot><tr><td>
-                    <select ng-model="action" ng-change="actionChange()">
-                        <option value="">----批量操作----</option>
-                        <option value="disable">屏蔽</option>
-                        <option value="enable">解除屏蔽</option>
-                        <option value="del">删除</option>
-                    </select>
-                </td></tr></tfoot>-->
             </table>
         </div>
     </div>

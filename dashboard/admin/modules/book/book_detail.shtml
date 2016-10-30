@@ -1,0 +1,134 @@
+<!--#include file="../_header.html"-->
+<title>Detail</title>
+<link rel="stylesheet" type="text/css" href="../../../template_content/assets/bootstrap-datetimepicker/css/datetimepicker.css" />
+<link rel="stylesheet" type="text/css" href="../../../template_content/assets/bootstrap-fileupload/bootstrap-fileupload.css" />
+<!--#include file="../_header_end.html"-->
+<section id="innerSection" ng-controller="book-detail">
+    <div class="row">
+        <div class="col-lg-12">
+            <!--breadcrumbs start -->
+            <ul class="breadcrumb">
+                <li><a href="#"><i class="icon-home"></i> 主页</a></li>
+                <li><a href="book_list.html">图书管理</a></li>
+                <li class="active">图书{{model._id ? '详情': '添加'}}</li>
+            </ul>
+            <!--breadcrumbs end -->
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+
+            <section class="panel">
+                <header class="panel-heading">
+                    图书 {{model._id ? '详情页——图书:'+ model.name: '添加'}}
+                </header>
+                <div class="panel-body">
+                    <form class="form-horizontal tasi-form" method="post" name="submit_form" ng-submit="submit_form.$valid && submit_form.submit()">
+                        <div class="form-group {{submit_form.gift_id.$error.required ? 'has-error':''}}" ng-hide="true">
+                            <label class="col-sm-2 col-sm-2 control-label">ID</label>
+                            <div class="col-sm-10">
+                                <input name="_id" ng-model="model._id" class="form-control input-lg" type="text" readonly="readonly">
+                            </div>
+                        </div>
+                        <div class="form-group {{submit_form.name.$error.required ? 'has-error':''}}">
+                            <label class="col-sm-2 col-sm-2 control-label">书名</label>
+                            <div class="col-sm-10">
+                                <input name="giftname" ng-model="model.name" class="form-control input-lg" type="text" required />
+                            </div>
+                        </div>
+
+                        <div class="form-group {{submit_form.name.$error.required ? 'has-error':''}}">
+                            <label class="col-sm-2 col-sm-2 control-label">封面图</label>
+                            <div class="col-sm-10">
+                                <input name="pic" ng-model="model.pic" class="form-control input-lg" type="text"  required />
+                                <img style="width: 200px;border:1px solid #e2e2e4;margin-top:10px;" ng-src="{{model.pic | nonopic}}"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group {{submit_form.name.$error.required ? 'has-error':''}}">
+                            <label class="col-sm-2 col-sm-2 control-label">编号</label>
+                            <div class="col-sm-10">
+                                <input name="number" ng-model="model.number" class="form-control input-lg" type="text"  required />
+                            </div>
+                        </div>
+                        <div class="form-group {{submit_form.name.$error.required ? 'has-error':''}}">
+                            <label class="col-sm-2 col-sm-2 control-label">作者</label>
+                            <div class="col-sm-10">
+                                <input name="author" ng-model="model.author" class="form-control input-lg" type="text"  required />
+                            </div>
+                        </div>
+                        <div class="form-group {{submit_form.name.$error.required ? 'has-error':''}}">
+                            <label class="col-sm-2 col-sm-2 control-label">出版年份</label>
+                            <div class="col-sm-10">
+                                <input name="year" ng-model="model.year" class="form-control input-lg" type="text"  required />
+                            </div>
+                        </div>
+                        <div class="form-group {{submit_form.name.$error.required ? 'has-error':''}}">
+                            <label class="col-sm-2 col-sm-2 control-label">出版社</label>
+                            <div class="col-sm-10">
+                                <input name="publishing" ng-model="model.publishing" class="form-control input-lg" type="text"  required />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">分类</label>
+                            <div class="col-sm-3">
+                                <select class="form-control input-lg m-bot15 category" ng-model="model.category" required>
+                                    <option value="">----选择分类----</option>
+                                    <option value="体育">体育</option>
+                                    <option value="政治">政治</option>
+                                    <option value="农业">农业</option>
+                                    <option value="音乐">音乐</option>
+                                    <option value="法律">法律</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group {{submit_form.name.$error.required ? 'has-error':''}}">
+                            <label class="col-sm-2 col-sm-2 control-label">图书总数量</label>
+                            <div class="col-sm-10">
+                                <input name="book_num" ng-model="model.book_num" class="form-control input-lg" type="text"  required />
+                            </div>
+                        </div>
+
+                        <div class="form-group" ng-hide="!model._id" >
+                            <label class="col-sm-2 col-sm-2 control-label">已借数量</label>
+                            <div class="col-sm-10">
+                                <input name="bollow_num" ng-model="model.bollow_num" class="form-control input-lg" type="text" disabled/>
+                            </div>
+                        </div>
+
+                        <div class="form-group" ng-hide="!model._id">
+                            <label class="col-sm-2 col-sm-2 control-label">剩余数量</label>
+                            <div class="col-sm-10">
+                                <input name="last_num" ng-model="model.last_num" class="form-control input-lg" type="text" disabled/>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="col-sm-2">
+                                <input type="hidden" name="_id" value="{{model._id}}"/>
+                                <button ng-disabled="!submit_form.$valid" ng-click="save()" type="submit" class="btn btn-primary btn-lg"
+                                >提交</button>
+                            </label>
+                        </div>
+
+                        <div class="form-group" ng-click='dev=1'>
+                            <label class="col-sm-2 control-label">Whole Model For Develop</label>
+                            <div class="col-sm-10" ng-hide='dev!=1'>
+                                <pre> {{ model | json : 4}}</pre>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+<!--#include file="../_footer.html"-->
+
+<script src="../../../template_content/assets/bootstrap-fileupload/bootstrap-fileupload.js"></script>
+
+<script src="controller/book_detail.js"></script>
+<!--#include file="../_footer_end.html"-->
