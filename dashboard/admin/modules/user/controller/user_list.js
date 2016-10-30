@@ -4,7 +4,7 @@ framework.angular.controllers.controller("user-list", ['$scope', 'commonRES','$f
         $scope.gridUrl = url; //这里演示的是从Angular的controller中输入url参数，在HTML中也是可以的     LinWenLong on 20130911
 
         $scope.status_Renderer = function(dataItem){
-            if(dataItem.status == 10) return '<span class="label label-success">正常</span>'
+            if(dataItem.status == 0) return '<span class="label label-success">正常</span>'
             else return  '<span class="label label-danger">被禁止</span>' 
         }
 
