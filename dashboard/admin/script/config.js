@@ -35,24 +35,24 @@ var API_SECRET_KEY = '';        //签名KEY
 /**
  * 图片上传服务
  */
-var IMG_UPLOAD_SERVER =  'http://52.77.95.9:5501/upload';
+var IMG_UPLOAD_SERVER =  '';
 
 /**
  * 图片服务器域名
  */
-var IMG_SERVER = 'http://52.77.95.9:5501';
+var IMG_SERVER = '';
 
 /**
  * 聊天服务地址
  */
-var CHAT_DISPATCHER_URL = 'http://52.77.95.9:8290';
+var CHAT_DISPATCHER_URL = '';
 
 /**
  * 聊天服务地址（最新使用的）
  */
-var CHAT_DISP_URLS = ['http://52.77.95.9:8290', 'http://52.77.95.9:8290'];
+var CHAT_DISP_URLS = [''];
 
 /**
  * 国家列表
  */
-var COUNTRY_LIST = ['Indonesia','Malaysia','Vietnam','Thailand']
+var COUNTRY_LIST = ['']
