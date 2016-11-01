@@ -43,7 +43,7 @@ framework.angular.controllers.controller("user-detail", ['$scope', '$rootScope',
                     else
                         location.href = 'user_list.html';
                 } else {
-                    console.log(result.message);
+                    alert(result.message);
                 }
                 $rootScope.loading = false;
             });

@@ -33,7 +33,7 @@ framework.angular.controllers.controller("book-detail", ['$scope', '$rootScope',
                     else
                         location.href = 'book_list.html';
                 } else {
-                    console.log(result.message);
+                    alert(result.message);
                 }
                 $rootScope.loading = false;
             });

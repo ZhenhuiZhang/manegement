@@ -33,7 +33,7 @@
                         <div class="form-group {{submit_form.book.$error.required ? 'has-error':''}}">
                             <label class="col-sm-2 col-sm-2 control-label">图书编号</label>
                             <div class="col-sm-6">
-                                <input name="book" ng-model="model.book" class="form-control input-lg" type="text" ng-keyup='bookChange($event)' required />
+                                <input name="book" ng-model="model.book" class="form-control input-lg" type="text" ng-keyup='bookChange($event)' required ng-disabled="model._id"/>
                             </div>
                             <div class="alert alert-danger col-sm-3" style="display:none"></div>
                         </div>
@@ -48,7 +48,7 @@
                         <div class="form-group {{submit_form.user_id.$error.required ? 'has-error':''}}">
                             <label class="col-sm-2 col-sm-2 control-label">学生学号</label>
                             <div class="col-sm-6">
-                                <input name="user_id" ng-model="model.user_id" class="form-control input-lg" type="text" ng-keyup='userChange($event)'  required />
+                                <input name="user_id" ng-model="model.user_id" class="form-control input-lg" type="text" ng-keyup='userChange($event)'  required  ng-disabled="model._id"/>
                             </div>
                             <div class="alert alert-danger col-sm-3" style="display:none"></div>
                         </div>

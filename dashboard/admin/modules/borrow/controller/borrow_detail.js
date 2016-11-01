@@ -65,7 +65,7 @@ framework.angular.controllers.controller("borrow-detail", ['$scope', '$rootScope
                     else
                         location.href = 'borrow_list.html';
                 } else {
-                    console.log(result.message);
+                    alert(result.message)
                 }
                 $rootScope.loading = false;
             });

@@ -17,7 +17,10 @@ module.exports = {
             inputs.user.update_at = moment();
             Models.User.update({_id:inputs.user._id},inputs.user,cb)
         }else{
-            Models.User.create(inputs.user,cb)
+            Models.User.findOne({user_id:inputs.user.user_id},function(err,rd){
+                if(rd) return cb(1,"该学号已被注册")
+                Models.User.create(inputs.user,cb)
+            })
         }
   }
 }
