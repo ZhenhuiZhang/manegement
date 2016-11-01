@@ -25,7 +25,7 @@ mongoose.model('Admin').findOneAndUpdate({
       adminname: "jack",
       pass: md5(md5("123123")),
       group : "super"
-    },function(err,rd){
+    },{},{upsert:true},function(err,rd){
       console.log(err)
       console.log(rd)
 })

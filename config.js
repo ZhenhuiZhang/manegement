@@ -1,5 +1,4 @@
 'use strict'
-var release_config = require('./configs/app/clusters/release')
 
 /**
  * 获取命令行参数，并判断命令行中是否包含指定的参数

@@ -5,7 +5,8 @@ framework.angular.controllers.controller("borrow-list", ['$scope', 'commonRES','
 
         $scope.status_Renderer = function(dataItem){
             if(dataItem.status == 10) return '<span class="label label-success">已归还</span>'
-            else return  '<span class="label label-danger">未归还</span>' 
+            else if(dataItem.status == 0 && new Date(dataItem.return_at) < new Date()) return '<span class="label label-danger">过期未归还</span>' 
+            return  '<span class="label label-info">未归还</span>' 
         }
 
         $scope.edit_Renderer = function(dataItem){

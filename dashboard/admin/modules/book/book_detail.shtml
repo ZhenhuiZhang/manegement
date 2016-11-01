@@ -80,6 +80,7 @@
                                     <option value="农业">农业</option>
                                     <option value="音乐">音乐</option>
                                     <option value="法律">法律</option>
+                                    <option value="文学">文学</option>
                                 </select>
                             </div>
                         </div>
