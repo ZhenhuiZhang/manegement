@@ -28,9 +28,8 @@ module.exports = {
 			where.name = new RegExp(inputs.name, 'i');
 		}
         if (inputs.user_id){
-			where.author = new RegExp(inputs.author, 'i');
+			where.user_id = inputs.user_id;
 		}
-
 		User.count(where, function (err,rd) {
             ep.emit('count', rd);
         })

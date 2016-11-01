@@ -32,30 +32,14 @@ jQuery(document).ready(function() {
 
 function cmsFilterSearchUserHandler(event){
     if (event.keyCode == 13) {
-        var param = {
-            search:event.target.value
-        }
+        var type = $('#cmsSearchUser').val()
         localStorage["cms_top_search_type"] = $('#cmsSearchUser').val();
-        jQuery.post('/api/user/cms_search_user',param,function(rd){
-            try{
-                if(rd.code!=0)alert(rd.message)
-                if(rd.body.type){
-                    location.href = '/dashboard/admin/modules/user/user_list.html?loginname='+rd.body.type;
-                }else{
-                    if(!rd.body.body.group)rd.body.body.group=""
-                    if(rd.body.body.group.indexOf('anchor')>-1){
-                        var page = $('#cmsSearchUser').val()
-                        if(page == "Edit")location.href = '/dashboard/admin/modules/user/anchor_detail.html?id='+rd.body.body._id;
-                        else if(page == "Official")location.href = '/dashboard/admin/modules/user/official_anchor_detail.html?id='+rd.body.body._id;
-                        else location.href = '/dashboard/admin/modules/user/anchor_punish.html?id='+rd.body.body._id;
-                    }else{
-                        location.href = '/dashboard/admin/modules/user/user_detail.html?id='+rd.body.body._id;
-                    }
-                }
-            }catch(e){
-                alert(e)
-            }
-        })
+        if(type == "user") 
+            location.href = '/dashboard/admin/modules/user/user_list.html?user_id='+event.target.value;
+        else if(type == "book")
+            location.href = '/dashboard/admin/modules/book/book_list.html?number='+event.target.value;
+        else 
+            location.href = '/dashboard/admin/modules/borrow/borrow_list.html?user_id='+event.target.value;
     }
 }
 
