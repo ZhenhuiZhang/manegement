@@ -1,16 +1,16 @@
 'use strict'
 var CONFIG  = require('../../../config');
 var models = require('../../models')
-var Book = models.Book;
+var Topic = models.Topic;
 var EventProxy   = require('eventproxy');
 
 module.exports = {
 	name: 'find',
-	description: 'get book list',
+	description: 'get shop list',
 	version: '1.0.0',
 	checkSign: CONFIG.api_sign_enable,           //是否校验签名  
-	inputs: ['*name', '*category', '*number', '*author','*limit', '*sort', '*page',],
-	outputs: '[{BookModal}]',
+	inputs: ['*title','*limit', '*sort', '*page',],
+	outputs: '[{TopicModel}]',
 	executor: function (inputs, res, next, cb) {
 		var ep = new EventProxy();
         ep.fail(cb);
@@ -24,24 +24,15 @@ module.exports = {
         inputs.page = inputs.page || 1;
         if (inputs.page > 1) option.skip = (inputs.page - 1) * option.limit;
 
-		if (inputs.name){
-			where.name = new RegExp(inputs.name, 'i');
-		}
-        if (inputs.author){
-			where.author = new RegExp(inputs.author, 'i');
-		}
-		if (inputs.category){
-			where.category = inputs.category;
-		}
-		if (inputs.number){
-			where.number = inputs.number;
+		if (inputs.title){
+			where.title = new RegExp(inputs.title, 'i');
 		}
 
-		Book.count(where, function (err,rd) {
+		Topic.count(where, function (err,rd) {
             ep.emit('count', rd);
         })
 
-        Book.find(where, {},option, function(err, rd){
+        Topic.find(where, {},option, function(err, rd){
 			ep.emit('find', rd)
 		})
 

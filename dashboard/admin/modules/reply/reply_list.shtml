@@ -1,14 +1,13 @@
 <!--#include file="../_header.html"-->
     <title>Gift List</title>
 <!--#include file="../_header_end.html"-->
-<section id="innerSection" ng-controller="user-list">
+<section id="innerSection" ng-controller="reply-list">
     <div class="row">
         <div class="col-lg-12">
             <!--breadcrumbs start -->
             <ul class="breadcrumb">
                 <li><a href="#"><i class="icon-home"></i> 主页</a></li>
-                <li class="active">用户列表</li>
-                <a href="user_detail.html" class="btn btn-primary icon-plus">添加用户</a>
+                <li class="active">点评记录</li>
             </ul>
             <!--breadcrumbs end -->
         </div>
@@ -16,11 +15,10 @@
 
     <div class="row">
         <div class="col-lg-12">
-            <table class="angular-grid" id="user_detail_grid"
+            <table class="angular-grid" id="reply_detail_grid"
                 ng-grid-kendoui="'url':'{{gridUrl}}','limit':'15','width':'98%','selectable':'multiple, row'">
                 <thead><tr><td>
-                    <input name="name" ng-model="name" type='text'  class="tooltips span2" placeholder="用户名" title="用户名"/>
-                    <select name='is_blocked' ng-model="is_blocked">
+                    <select name='deleted' ng-model="deleted">
                         <option value="">--全部状态--</option>
                         <option value="false">正常</option>
                         <option value="true">屏蔽</option>
@@ -30,10 +28,12 @@
                 </td></tr></thead>
                 <tbody>
                 <tr>
-                    <th data-fieldName="name" data-fieldType="string" data-width="8%">用户名</th>
-                    <th data-fieldName="score" data-fieldType="string" data-width="10%">积分</th>
-                    <th data-fieldName="is_blocked" data-fieldType="string" data-width="10%">状态</th>
-                    <th data-fieldName="edit" data-fieldType="string" data-width="6%">操作</th>
+                    <th data-fieldName="score" data-fieldType="string">评分</th>
+                    <th data-fieldName="comment" data-fieldType="string">评论内容</th>
+                    <th data-fieldName="picture" data-fieldType="string" data-width="40%">图片</th>
+                    <th data-fieldName="delete" data-fieldType="string">状态</th>
+                    <th data-fieldName="create_at" data-fieldType="date" data-format="{0:yyyy-MM-dd HH:mm:ss}">点评时间</th>
+                    <th data-fieldName="edit" data-fieldType="string">操作</th>
                 </tr>
                 </tbody>
             </table>
@@ -41,5 +41,5 @@
     </div>
 </section>
 <!--#include file="../_footer.html"-->
-<script src="controller/user_list.js"></script>
+<script src="controller/reply_list.js"></script>
 <!--#include file="../_footer_end.html"-->

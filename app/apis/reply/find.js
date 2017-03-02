@@ -1,7 +1,7 @@
 'use strict'
 var CONFIG  = require('../../../config');
 var models = require('../../models')
-var Borrow    = models.Borrow;
+var Reply    = models.Reply;
 var EventProxy   = require('eventproxy');
 
 module.exports = {
@@ -9,8 +9,8 @@ module.exports = {
 	description: 'get book list',
 	version: '1.0.0',
 	checkSign: CONFIG.api_sign_enable,           //是否校验签名  
-	inputs: ['*name', '*book', '*user_id','*limit', '*sort', '*page',],
-	outputs: '[{BorrowModal}]',
+	inputs: ['*deleted','*limit', '*sort', '*page',],
+	outputs: '[{ReplyModal}]',
 	executor: function (inputs, res, next, cb) {
 		var ep = new EventProxy();
         ep.fail(cb);
@@ -24,21 +24,15 @@ module.exports = {
         inputs.page = inputs.page || 1;
         if (inputs.page > 1) option.skip = (inputs.page - 1) * option.limit;
 
-		if (inputs.name){
-			where.name = new RegExp(inputs.name, 'i');
-		}
-        if (inputs.book){
-			where.book = inputs.book;
-		}
-		if (inputs.user_id){
-			where.user_id = inputs.user_id;
+		if (inputs.deleted){
+			where.deleted = inputs.deleted === "false"?false:true
 		}
 
-		Borrow.count(where, function (err,rd) {
+		Reply.count(where, function (err,rd) {
             ep.emit('count', rd);
         })
 
-        Borrow.find(where, {},option, function(err, rd){
+        Reply.find(where, {},option, function(err, rd){
 			ep.emit('find', rd)
 		})
 

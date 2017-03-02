@@ -24,7 +24,7 @@ var config = {
     
     session_secret: 'nonolive_secret',
     api_sign_enable : false,  //CMS自有的API，是否启用签名
-    db: 'mongodb://127.0.0.1:27017/BOOKWeb',                          //业务主库
+    db: 'mongodb://127.0.0.1:27017/node_club_dev',                          //业务主库
     default_timezone : 'Asia/Jakarta',
 
 

@@ -9,7 +9,7 @@ module.exports = {
 	description: 'get user list',
 	version: '1.0.0',
 	checkSign: CONFIG.api_sign_enable,           //是否校验签名  
-	inputs: ['*book', '*user_id','*status','*limit', '*sort', '*page',],
+	inputs: ['*name',"*is_blocked",'*limit', '*sort', '*page',],
 	outputs: '[{UserModal}]',
 	executor: function (inputs, res, next, cb) {
 		var ep = new EventProxy();
@@ -27,9 +27,11 @@ module.exports = {
 		if (inputs.name){
 			where.name = new RegExp(inputs.name, 'i');
 		}
-        if (inputs.user_id){
-			where.user_id = inputs.user_id;
+
+		if (inputs.is_blocked){
+			where.is_block = inputs.is_blocked === "false"?false:true
 		}
+        
 		User.count(where, function (err,rd) {
             ep.emit('count', rd);
         })
